@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     private Animator anim;
     private Vector3 stickDirection;
 
+    RaycastHit hit;
+
     void Start()
     {
         controller = this.GetComponentInChildren<CharacterController>();
@@ -29,7 +31,7 @@ public class PlayerManager : MonoBehaviour
         if (x > 1) x = 1; // assegura que o jogador nao ira se mover mais rapido em diagonal
         if (z > 1) z = 1;
 
-        controller.Move(new Vector3(x,0,z) * Time.deltaTime * playerSpeed);
+        controller.Move(new Vector3(x,-hit.distance, z) * Time.deltaTime * playerSpeed);
         anim.SetFloat("PlayerSpeed", Vector3.ClampMagnitude(stickDirection, 1).magnitude, 0.05f, Time.deltaTime); // clamp para limitar a 1, visto que a diagonal seria de 1.4
     }
 
@@ -40,9 +42,21 @@ public class PlayerManager : MonoBehaviour
         controller.transform.forward += Vector3.Lerp(controller.transform.forward, rotationOffset, Time.deltaTime * 30f);
     }
 
+    private void RayCaster()
+    {
+        if (Physics.Raycast(transform.GetChild(0).position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+        }
+
+        //print(hit.distance);
+        //controller.transform.position -= new Vector3(0, hit.distance, 0);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        RayCaster();
         Move();
         Rotate();
     }

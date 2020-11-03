@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         ResetSentences();
         display.SetActive(false);
-        taskMaker.GenerateTask(); // gera a task na UI
+        if(taskMaker != null) { taskMaker.GenerateTask(); } // gera a task na UI
         taskMaker = null;
     }
 

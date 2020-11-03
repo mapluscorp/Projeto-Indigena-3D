@@ -7,6 +7,7 @@ public class InteractionManager : MonoBehaviour
 {
     [Header("References")]
     public Button plantInteractionBtn;
+    public Image collectableItemAnimation;
 
     private PlayerManager playerManager;
     private Animator anim;
@@ -72,10 +73,34 @@ public class InteractionManager : MonoBehaviour
             Identifier task_ID = task.GetComponent<Identifier>();
             if (task_ID.name.Contains(identifier.name))
             {
-                task.GetComponent<TaskSlot>().IncrementProgress(1);
-                Destroy(identifier.gameObject); // some com a planta que foi coletada
+                TaskSlot taskSlot = task.GetComponent<TaskSlot>();
+                taskSlot.IncrementProgress(1);
+                collectableItemAnimation.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
+                collectableItemAnimation.sprite = taskSlot.icon.sprite;
+                collectableItemAnimation.gameObject.SetActive(true);
+                StartCoroutine(CollectableAnimator(taskSlot.transform));
             }
+            Destroy(identifier.gameObject); // some com a planta que foi coletada
         }
+    }
+
+    IEnumerator CollectableAnimator(Transform targetPos)
+    {
+        float timeElapsed = 0;
+        float lerpDuration = 0.5f;
+
+        Vector2 startPos = collectableItemAnimation.transform.position;
+        Vector2 endPos = targetPos.position;
+        Vector2 valueToLerp;
+
+        while (timeElapsed < lerpDuration)
+        {
+            valueToLerp = Vector2.Lerp(startPos, endPos, timeElapsed / lerpDuration);
+            collectableItemAnimation.transform.position = valueToLerp;
+            timeElapsed += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        collectableItemAnimation.gameObject.SetActive(false);
     }
 
 }

@@ -35,7 +35,8 @@ public class TaskSlot : MonoBehaviour
 
     IEnumerator ProgressAnimation(float progress_current, int target_current)
     {
-        while(progress_current < target_current)
+        yield return new WaitForSeconds(0.5f); // espera meio segundo antes de iniciar, animacao do icone indo ate a task
+        while (progress_current < target_current)
         {
             progress_current += 0.025f;
             progressBar.sizeDelta = new Vector3((progress_current * progressBarMaxSize) / target, progressBar.sizeDelta.y);

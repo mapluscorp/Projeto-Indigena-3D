@@ -23,7 +23,22 @@ public class DialogueHolder : MonoBehaviour
         interactionBtn = GameObject.Find("/Canvas/Dialogue System/Interaction Btn").gameObject;
     }
 
-    private void OnBecameVisible() // comeca a conferir a distancia para o player
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag != "Player") { return; }
+        SendSentences();
+        interactionBtn.SetActive(true);
+        triggered = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag != "Player") { return; }
+        triggered = false;
+        interactionBtn.SetActive(false);
+    }
+
+    /*private void OnBecameVisible() // comeca a conferir a distancia para o player
     {
         InvokeRepeating("CheckDistance", 0.1f, 0.1f);
     }
@@ -47,7 +62,7 @@ public class DialogueHolder : MonoBehaviour
             triggered = false;
             interactionBtn.SetActive(false);
         }
-    }
+    }*/
 
     private void SendSentences()
     {

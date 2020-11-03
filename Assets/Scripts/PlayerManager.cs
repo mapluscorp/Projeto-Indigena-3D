@@ -16,14 +16,26 @@ public class PlayerManager : MonoBehaviour
 
     RaycastHit hit;
 
+    public bool CanMove { get; set; }
+
     void Start()
     {
         controller = this.GetComponentInChildren<CharacterController>();
         anim = this.GetComponentInChildren<Animator>();
+        CanMove = true;
+    }
+
+    void Update()
+    {
+        RayCaster();
+        Move();
+        Rotate();
     }
 
     private void Move()
     {
+        if (!CanMove) { return; }
+
         stickDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         float x = mainCamera.transform.TransformDirection(stickDirection).x;
@@ -37,6 +49,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Rotate()
     {
+        if (!CanMove) { return; }
+
         Vector3 rotationOffset = mainCamera.transform.TransformDirection(stickDirection) * 4f;
         rotationOffset.y = 0;
         controller.transform.forward += Vector3.Lerp(controller.transform.forward, rotationOffset, Time.deltaTime * 30f);
@@ -48,16 +62,5 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
         }
-
-        //print(hit.distance);
-        //controller.transform.position -= new Vector3(0, hit.distance, 0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        RayCaster();
-        Move();
-        Rotate();
     }
 }

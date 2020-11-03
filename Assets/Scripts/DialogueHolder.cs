@@ -56,6 +56,11 @@ public class DialogueHolder : MonoBehaviour
         dialogueManager.characterName.text = characterName;
         interactionBtn.SetActive(false); // esconde o botao de iniciar dialogo
 
+        //TaskMaker taskMaker = this.GetComponent<TaskMaker>(); // confere se ha um task generator neste NPC
+        //if (taskMaker != null) { dialogueManager.taskMaker = taskMaker; } // Envia o script contendo as informacoes da task
+
+        dialogueManager.taskMaker = this.GetComponent<TaskMaker>(); // Envia o script contendo as informacoes da task
+
         if (PlayerPrefs.GetInt("Idioma") == 0) // portugues
         {
             for (int i = 0; i < portugues.Length; i++)

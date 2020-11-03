@@ -18,6 +18,9 @@ public class DialogueManager : MonoBehaviour
     private Animator anim;
     private GameObject display;
 
+    [HideInInspector]
+    public TaskMaker taskMaker;
+
     void Start()
     {
         currentIndex = 0;
@@ -52,6 +55,8 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         ResetSentences();
         display.SetActive(false);
+        taskMaker.GenerateTask(); // gera a task na UI
+        taskMaker = null;
     }
 
     public void DisplayNextSentence()

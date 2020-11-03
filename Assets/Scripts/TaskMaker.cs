@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class TaskMaker : MonoBehaviour
 {
     public GameObject taskPrefab;
+    public string taskName;
     public Sprite icon;
     public string description;
     public int target;
     private Transform parent;
+    private bool HasCreated { get; set; }
 
     private void Start()
     {
-        parent = GameObject.Find("/Canvas/Task System/Background").transform;
-        if(parent == null) { Debug.LogError("TaskMaker nao encontrou o parent das tasks, conferir nome"); }
+        parent = GameObject.Find("/Canvas/Task System/Task Group").transform;
     }
 
     private void Update()
@@ -27,6 +28,8 @@ public class TaskMaker : MonoBehaviour
 
     public void GenerateTask()
     {
+        if(HasCreated) { return; }
+        HasCreated = true;
         GameObject task = Instantiate(taskPrefab, Vector3.zero, Quaternion.identity);
         task.transform.parent = parent;
         task.transform.localScale = Vector3.one;
@@ -34,5 +37,6 @@ public class TaskMaker : MonoBehaviour
         taskScript.icon.sprite = icon;
         taskScript.descriptionText.text = description;
         taskScript.target = target;
+        taskScript.GetComponent<Identifier>().name = taskName;
     }
 }

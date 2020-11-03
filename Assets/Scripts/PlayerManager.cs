@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do player
 {
     [Header("References")]
     public Camera mainCamera;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskSlot : MonoBehaviour
+public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI, computa o progresso
 {
     public Image icon; // icone da task
     public Text descriptionText; // descricao da task
@@ -12,6 +12,8 @@ public class TaskSlot : MonoBehaviour
     public int current = 0; // valor atual
     private RectTransform progressBar; // a barra de progresso na UI
     private int progressBarMaxSize; // tamanho maximo da barra em pixels
+
+    public bool isCompleted { get; set; }
 
     void Start()
     {
@@ -24,7 +26,7 @@ public class TaskSlot : MonoBehaviour
     {
         int oldCurrent = current;
         current += value;
-        if(current > target) { current = target; } // impede de ter um progresso maior que o target
+        if(current >= target) { current = target; isCompleted = true; } // impede de ter um progresso maior que o target
         StartCoroutine(ProgressAnimation(oldCurrent, current));
     }
 

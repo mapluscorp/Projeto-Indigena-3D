@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskMaker : MonoBehaviour
+public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo GenerateTask deve ser chamado por outro script
 {
     public GameObject taskPrefab;
     public string taskName;

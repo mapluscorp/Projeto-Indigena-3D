@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueHolder : MonoBehaviour
+public class DialogueHolder : MonoBehaviour // esse script guarda as falas e envia para o DialogueManager quando o player estiver proximo
 {
     public string characterName;
     public Sprite characterSprite;
@@ -20,7 +20,7 @@ public class DialogueHolder : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         dialogueManager = GameObject.Find("/Canvas/Dialogue System").GetComponent<DialogueManager>();
-        interactionBtn = GameObject.Find("/Canvas/Dialogue System/Interaction Btn").gameObject;
+        interactionBtn = GameObject.Find("/Canvas/Interaction HUD Area/Talk Btn").gameObject;
     }
 
     private void OnTriggerEnter(Collider other)

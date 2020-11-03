@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour // script responsavel por exibir o dialogo na tela
 {
     public List<string> sentences;
     public Image characterSprite;
@@ -28,28 +28,19 @@ public class DialogueManager : MonoBehaviour
         display = this.transform.Find("Display").gameObject;
     }
 
-    private void Update()
-    {
-        /*if (!beingHandled && ContinueButton.activeSelf && (Input.GetKeyDown("return") || Input.GetKeyDown("enter")))
-        {
-            Debug.Log("Pressionou enter");
-            DisplayNextSentence();
-        }*/
-    }
-
-    public void Begin()
+    public void Begin() // chamado pelo botao de iniciar dialogo na UI
     {
         anim.SetTrigger("Open");
         Continue();
     }
 
-    public void Continue()
+    public void Continue() // chamado cada vez que o player clica no balao de dialogo
     {
         if (currentIndex < sentences.Count) { DisplayNextSentence(); }
         else { StartCoroutine(Close()); }
     }
 
-    IEnumerator Close()
+    IEnumerator Close() // chamado ao fim de todas as falas
     {
         anim.SetTrigger("Close");
         yield return new WaitForSeconds(0.5f);

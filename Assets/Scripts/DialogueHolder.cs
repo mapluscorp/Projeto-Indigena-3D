@@ -10,71 +10,23 @@ public class DialogueHolder : MonoBehaviour // esse script guarda as falas e env
     public string[] kaingang;
     public float triggerDistance = 1;
 
-    private Transform player;
     private DialogueManager dialogueManager;
-    private GameObject interactionBtn;
-
-    private bool triggered = false; // controla se o dialogo ja foi acionado
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         dialogueManager = GameObject.Find("/Canvas/Dialogue System").GetComponent<DialogueManager>();
-        interactionBtn = GameObject.Find("/Canvas/Interaction HUD Area/Talk Btn").gameObject;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag != "Player") { return; }
-        SendSentences();
-        interactionBtn.SetActive(true);
-        triggered = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag != "Player") { return; }
-        triggered = false;
-        interactionBtn.SetActive(false);
-    }
-
-    /*private void OnBecameVisible() // comeca a conferir a distancia para o player
-    {
-        InvokeRepeating("CheckDistance", 0.1f, 0.1f);
-    }
-
-    private void OnBecameInvisible() // para de conferir a distancia
-    {
-        CancelInvoke("CheckDistance");
-    }
-
-    private void CheckDistance()
-    {
-        float distance = Vector3.Distance(this.transform.position, player.position);
-        if (!triggered && distance < triggerDistance) // proximo do personagem e ainda nao enviou as sentencas
-        {
-            SendSentences();
-            interactionBtn.SetActive(true);
-            triggered = true;
-        } 
-        else if (triggered && distance > triggerDistance) // distante do personagem
-        {
-            triggered = false;
-            interactionBtn.SetActive(false);
-        }
-    }*/
-
-    private void SendSentences()
+    public void SendSentences()
     {
         dialogueManager.sentences.Clear(); // limpa a lista
         dialogueManager.characterSprite.sprite = characterSprite;
         dialogueManager.characterName.text = characterName;
-        interactionBtn.SetActive(false); // esconde o botao de iniciar dialogo
 
         //TaskMaker taskMaker = this.GetComponent<TaskMaker>(); // confere se ha um task generator neste NPC
         //if (taskMaker != null) { dialogueManager.taskMaker = taskMaker; } // Envia o script contendo as informacoes da task
 
-        dialogueManager.taskMaker = this.GetComponent<TaskMaker>(); // Envia o script contendo as informacoes da task
+        dialogueManager.taskMaker = this.GetComponents<TaskMaker>(); // Envia o script contendo as informacoes da task
 
         if (PlayerPrefs.GetInt("Idioma") == 0) // portugues
         {

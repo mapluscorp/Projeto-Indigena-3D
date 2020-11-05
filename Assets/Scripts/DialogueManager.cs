@@ -19,7 +19,9 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     private GameObject display;
 
     [HideInInspector]
-    public TaskMaker taskMaker;
+    public TaskMaker[] taskMaker;
+    [HideInInspector]
+    public List<TaskSlot> completedTasks;
 
     void Start()
     {
@@ -32,6 +34,11 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     {
         anim.SetTrigger("Open");
         Continue();
+        foreach(TaskSlot task in completedTasks) // manda as tasks ja completadas embora
+        { 
+            task.GetComponent<Animator>().SetTrigger("Complete"); 
+        }
+        completedTasks.Clear();
     }
 
     public void Continue() // chamado cada vez que o player clica no balao de dialogo
@@ -46,7 +53,11 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
         yield return new WaitForSeconds(0.5f);
         ResetSentences();
         display.SetActive(false);
-        if(taskMaker != null) { taskMaker.GenerateTask(); } // gera a task na UI
+        if(taskMaker != null) 
+        { 
+            foreach(TaskMaker task in taskMaker)
+            task.GenerateTask(); 
+        } // gera a task na UI
         taskMaker = null;
     }
 

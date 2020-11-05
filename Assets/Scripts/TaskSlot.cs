@@ -46,4 +46,9 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
         }
         RefreshProgressBar();
     }
+
+    public void DestroyTask()
+    {
+        Destroy(this.gameObject);
+    }
 }

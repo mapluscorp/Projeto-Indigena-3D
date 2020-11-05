@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1862085772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1862085773}
+  m_Layer: 0
+  m_Name: Dialogue Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1862085773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862085772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3635155772267162866}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3635155772267162867
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,8 +41,7 @@ GameObject:
   - component: {fileID: 3635155772267162866}
   - component: {fileID: 3635155772267162864}
   - component: {fileID: 3635155772267162870}
-  - component: {fileID: 3635155772267162865}
-  - component: {fileID: 3635155772267162871}
+  - component: {fileID: 558107454}
   m_Layer: 0
   m_Name: NPC Character
   m_TagString: Untagged
@@ -27,12 +56,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635155772267162867}
-  m_LocalRotation: {x: -0, y: 0.36149344, z: -0, w: 0.93237466}
+  m_LocalRotation: {x: 0, y: 0.3614944, z: 0, w: 0.9323743}
   m_LocalPosition: {x: 40.362694, y: -3.122, z: 81.65318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3888879818415692551}
   - {fileID: 3635155773314451505}
+  - {fileID: 1862085773}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 42.384003, z: 0}
@@ -66,7 +96,7 @@ CapsuleCollider:
   m_Height: 3.1405213
   m_Direction: 1
   m_Center: {x: 0, y: -0.30124485, z: 0}
---- !u!114 &3635155772267162865
+--- !u!114 &558107454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,35 +105,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3635155772267162867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e06082a995691a43ae7209f859df209, type: 3}
+  m_Script: {fileID: 11500000, guid: 7407b2cee21695440882967316053110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: "Anci\xE3o"
-  characterSprite: {fileID: 21300000, guid: 03d1358e603c07646ad5e817dd4b2f50, type: 3}
-  portugues:
-  - "Os poliacetilenos podem ser encontrados em vegetais da fam\xEDlia Apiaceae como
-    as cenouras onde apresentam atividades citot\xF3xicas."
-  - "O falcarinol e o falcarindiol s\xE3o alguns destes compostos."
-  kaingang: []
-  triggerDistance: 3
---- !u!114 &3635155772267162871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635155772267162867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76277defdfa8c647a52172e5c9713fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskPrefab: {fileID: 853372113678316326, guid: 9c4b6ff350bae2645965ff5320708e13,
-    type: 3}
-  taskName: CabbageTask
-  icon: {fileID: 21300000, guid: 84bd69bde01098e48a8c5d0acc6b8b7b, type: 3}
-  description: Coletar  repolhos
-  target: 5
 --- !u!1 &3635155773314451506
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +156,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3635155773314451506}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -195,8 +199,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.2138611}
+  m_Center: {x: -9.1651087e-10, y: 0, z: -0.106929645}
 --- !u!1001 &3635155772455206124
 PrefabInstance:
   m_ObjectHideFlags: 0

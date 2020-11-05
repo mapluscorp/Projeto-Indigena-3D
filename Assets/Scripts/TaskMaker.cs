@@ -11,6 +11,8 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
     public string description;
     public int target;
     private Transform parent;
+    public bool taskCompleted = false;
+
     private bool HasCreated { get; set; }
 
     private void Start()
@@ -28,15 +30,16 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
 
     public void GenerateTask()
     {
-        if(HasCreated) { return; }
+        if(HasCreated) { return; } // para nao criar essa task de novo
         HasCreated = true;
-        GameObject task = Instantiate(taskPrefab, Vector3.zero, Quaternion.identity);
-        task.transform.parent = parent;
-        task.transform.localScale = Vector3.one;
-        TaskSlot taskScript = task.GetComponent<TaskSlot>();
-        taskScript.icon.sprite = icon;
-        taskScript.descriptionText.text = description;
-        taskScript.target = target;
-        taskScript.GetComponent<Identifier>().name = taskName;
+        GameObject task = Instantiate(taskPrefab, Vector3.zero, Quaternion.identity); // instancia ela na UI
+        task.transform.parent = parent; // poe a task no lugar correto na hierarquia
+        task.transform.localScale = Vector3.one; // ajusta a escala
+        TaskSlot taskScript = task.GetComponent<TaskSlot>(); // referencia do script da task criada
+        taskScript.icon.sprite = icon; // atualiza o icone dela
+        taskScript.descriptionText.text = description; // atualiza o texto dela
+        taskScript.target = target; // atualiza o valor objetivo da task
+        taskScript.GetComponent<Identifier>().name = taskName; // atualiza o nome da task
+        taskScript.whoMadeTheTask = this.GetComponent<TaskMaker>(); // marca quem criou a task
     }
 }

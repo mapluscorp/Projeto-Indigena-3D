@@ -9,13 +9,10 @@ public class TaskVerifier : MonoBehaviour
     private Transform tasksParent;
     private DialogueManager dialogueManager;
 
-    public bool dialogueEnabled { get; set; }
-
     void Start()
     {
         tasksParent = GameObject.Find("/Canvas/Task System/Task Group").transform;
         dialogueManager = GameObject.Find("/Canvas/Dialogue System").GetComponent<DialogueManager>();
-        dialogueEnabled = true;
     }
 
     public bool Verify()
@@ -29,7 +26,7 @@ public class TaskVerifier : MonoBehaviour
             Identifier task_ID = task.GetComponent<Identifier>(); // identificacao da task
             TaskSlot taskSlot = task.GetComponent<TaskSlot>(); // progresso da task
 
-            if (CheckName(task_ID.name)) // confere se essa task eh requisitada por esse NPC
+            if (task.gameObject.activeSelf && CheckName(task_ID.name)) // confere se essa task eh requisitada por esse NPC
             {
                 if (!taskSlot.isCompleted) { return false; }
                 else

@@ -82,6 +82,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
                 StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
             }
             Destroy(identifier.gameObject); // some com a planta que foi coletada
+            plantInteractionBtn.gameObject.SetActive(false);
         }
     }
 

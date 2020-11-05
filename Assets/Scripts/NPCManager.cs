@@ -31,11 +31,11 @@ public class NPCManager : MonoBehaviour
 
     private void GetDialogue() // pega o dialogo atual
     {
-        if(dialogueGroup.childCount == 0) { return; }
+        if(dialogueGroup.childCount == 0) { return; } // nao ha dialogos neste NPC
         foreach(Transform dialogue in dialogueGroup)
         {
             TaskVerifier dialogue_verifier = dialogue.GetComponent<TaskVerifier>();
-            if(dialogue_verifier.dialogueEnabled && dialogue_verifier.Verify()) // dialogo ativo e com os requisitos cumpridos
+            if(dialogue.gameObject.activeSelf && dialogue_verifier.Verify()) // dialogo ativo e com os requisitos cumpridos
             { 
                 dialogueHolder = dialogue.GetComponent<DialogueHolder>(); 
                 return; 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI, computa o progresso
 {
+    [HideInInspector]
+    public TaskMaker whoMadeTheTask;
+
     public Image icon; // icone da task
     public Text descriptionText; // descricao da task
     public int target; // valor objetivo
@@ -26,8 +29,20 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
     {
         int oldCurrent = current;
         current += value;
-        if(current >= target) { current = target; isCompleted = true; } // impede de ter um progresso maior que o target
+        if(current >= target) { CompleteTask(); }
         StartCoroutine(ProgressAnimation(oldCurrent, current));
+    }
+
+    private void CompleteTask() // chamado quando atinge o objetivo da task
+    {
+        current = target; // impede de ter um progresso maior que o target
+        isCompleted = true; // marca essa task como completada
+        whoMadeTheTask.taskCompleted = true; // avisa o script que criou a task, que ela esta agora completa
+        foreach(TaskMaker maker in whoMadeTheTask.transform)
+        {
+            if(maker.taskCompleted == false) { return; } // caso uma das tasks requisitas ainda nao tenha sido cumprida
+        }
+        whoMadeTheTask.gameObject.SetActive(false); // desativa este dialogo pois ja completou todas as tasks
     }
 
     public void RefreshProgressBar() // atualiza o tamanho da barra

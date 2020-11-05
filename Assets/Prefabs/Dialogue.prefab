@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4395651880339104043}
   - component: {fileID: 2350756196103953481}
-  - component: {fileID: 620744843768563364}
   - component: {fileID: 6393681648179025311}
+  - component: {fileID: 620744843768563364}
   m_Layer: 0
   m_Name: Dialogue
   m_TagString: Untagged
@@ -50,6 +50,19 @@ MonoBehaviour:
   portugues: []
   kaingang: []
   triggerDistance: 3
+--- !u!114 &6393681648179025311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147196791423005398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d76d45a5144570449c0ccf1a34d0f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tasks: []
 --- !u!114 &620744843768563364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,16 +81,3 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: 
   target: 1
---- !u!114 &6393681648179025311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5147196791423005398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d76d45a5144570449c0ccf1a34d0f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tasks: []

@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
         Continue();
         foreach(TaskSlot task in completedTasks) // manda as tasks ja completadas embora
         { 
-            task.GetComponent<Animator>().SetTrigger("Complete"); 
+            task.GetComponent<Animator>().SetTrigger("Complete");
         }
         completedTasks.Clear();
     }
@@ -56,7 +56,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
         if(taskMaker != null) 
         { 
             foreach(TaskMaker task in taskMaker)
-            task.GenerateTask(); 
+                task.GenerateTask(); 
         } // gera a task na UI
         taskMaker = null;
     }

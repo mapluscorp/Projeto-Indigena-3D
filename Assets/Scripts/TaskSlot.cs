@@ -16,12 +16,20 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
     private RectTransform progressBar; // a barra de progresso na UI
     private int progressBarMaxSize; // tamanho maximo da barra em pixels
 
+    private AudioSource source;
+    private AudioClip completeSound;
+    private AudioClip notificationSound;
+
     public bool isCompleted { get; set; }
 
     void Start()
     {
         progressBar = this.transform.Find("Visual/Progress Bar").GetComponent<RectTransform>();
         progressBarMaxSize = (int)progressBar.sizeDelta.x;
+        source = this.GetComponent<AudioSource>();
+        completeSound = Resources.Load<AudioClip>("Audio/Complete");
+        notificationSound = Resources.Load<AudioClip>("Audio/Notification");
+        source.PlayOneShot(notificationSound);
         RefreshProgressBar();
     }
 
@@ -48,6 +56,7 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
     public void RefreshProgressBar() // atualiza o tamanho da barra
     {
         progressBar.sizeDelta = new Vector3((current * progressBarMaxSize) / target, progressBar.sizeDelta.y);
+        if(isCompleted) { source.PlayOneShot(completeSound); } // toca o som de completo
     }
 
     IEnumerator ProgressAnimation(float progress_current, int target_current)

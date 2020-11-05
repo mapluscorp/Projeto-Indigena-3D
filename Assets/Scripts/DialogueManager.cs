@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     private short currentIndex;
     private Animator anim;
     private GameObject display;
+    private AudioSource source;
 
     [HideInInspector]
     public TaskMaker[] taskMaker;
@@ -28,6 +29,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
         currentIndex = 0;
         anim = this.transform.Find("Display/Dialogue Display").GetComponent<Animator>();
         display = this.transform.Find("Display").gameObject;
+        source = this.GetComponent<AudioSource>();
     }
 
     public void Begin() // chamado pelo botao de iniciar dialogo na UI
@@ -96,6 +98,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
+            if(dialogueText.text.Length % 2 == 0) { source.Play(); }
             yield return new WaitForSeconds(0.03f); // Intervalo de dempo entre cada letra
         }
     }

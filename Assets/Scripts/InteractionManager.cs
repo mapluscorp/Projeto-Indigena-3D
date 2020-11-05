@@ -8,18 +8,22 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     [Header("References")]
     public Button plantInteractionBtn;
     public Image collectableItemAnimation;
+    public AudioSource source; // audio que toca interacoes em geral
+    public AudioSource footstepSource; // audio que toca o som dos passos
 
     private PlayerManager playerManager;
     private Animator anim;
     private Transform taskGroup;
 
     private Identifier identifier; // identifier do objeto que esta em trigger no momento
+    private AudioClip increaseSound;
 
     private void Start()
     {
         playerManager = this.GetComponentInParent<PlayerManager>();
         anim = this.GetComponentInChildren<Animator>();
         taskGroup = GameObject.Find("/Canvas/Task System/Task Group").transform;
+        increaseSound = Resources.Load<AudioClip>("Audio/Pop");
     }
 
     public void PullPlant() // chamado pelo botao de interacao na UI
@@ -81,9 +85,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
                 collectableItemAnimation.gameObject.SetActive(true); // exibe
                 StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
             }
-            Destroy(identifier.gameObject); // some com a planta que foi coletada
-            plantInteractionBtn.gameObject.SetActive(false);
         }
+        PlayPlantSound();
+        Destroy(identifier.gameObject); // some com a planta que foi coletada
+        plantInteractionBtn.gameObject.SetActive(false);
     }
 
     IEnumerator CollectableAnimator(Transform targetPos) // animacao do item sendo coletado
@@ -102,7 +107,19 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        source.PlayOneShot(increaseSound); // icone da planta chegou ate a barra
         collectableItemAnimation.gameObject.SetActive(false);
+    }
+
+    private void PlayPlantSound()
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Audio/PushPlant");
+        source.PlayOneShot(clip);
+    }
+
+    public void PlayFootstepSound() // chamado pela animacao de movimento
+    {
+        footstepSource.Play();
     }
 
 }

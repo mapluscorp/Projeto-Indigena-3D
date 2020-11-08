@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7279191296336097433}
   - component: {fileID: 4281681762108106447}
+  - component: {fileID: 2982098099591444034}
   m_Layer: 0
   m_Name: Cabbage
   m_TagString: Untagged
@@ -48,6 +49,23 @@ MonoBehaviour:
   ID: 0
   type: Plant
   name: Cabbage
+--- !u!114 &2982098099591444034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799866558656836080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7241412eae9c05f4faef654a64ed7f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variations:
+  - {fileID: 1353191285826915187}
+  - {fileID: 8484663045356603510}
+  - {fileID: 3830723651281629382}
+  - {fileID: 7778976170760136840}
 --- !u!1 &8844434624398633874
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +182,30 @@ PrefabInstance:
 --- !u!4 &7724318865729959728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 927c54569e47dbc4b97393c5bb5d8f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7834278081191989467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1353191285826915187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -108242357865030744, guid: 927c54569e47dbc4b97393c5bb5d8f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7834278081191989467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8484663045356603510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7419849168705906515, guid: 927c54569e47dbc4b97393c5bb5d8f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7834278081191989467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3830723651281629382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6454085655370129437, guid: 927c54569e47dbc4b97393c5bb5d8f57,
+    type: 3}
+  m_PrefabInstance: {fileID: 7834278081191989467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7778976170760136840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8697422896052488109, guid: 927c54569e47dbc4b97393c5bb5d8f57,
     type: 3}
   m_PrefabInstance: {fileID: 7834278081191989467}
   m_PrefabAsset: {fileID: 0}

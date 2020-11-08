@@ -20,11 +20,14 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     public bool CanMove { get; set; }
 
+    public bool CanUseMachete { get; set; }
+
     void Start()
     {
         controller = this.GetComponentInChildren<CharacterController>();
         anim = this.GetComponentInChildren<Animator>();
         CanMove = true;
+        CanUseMachete = true;
     }
 
     void Update()

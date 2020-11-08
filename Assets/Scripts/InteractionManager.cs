@@ -47,7 +47,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             plantInteractionBtn.gameObject.SetActive(true); // exibe o botao de interagir com plantas
         }
-        else if (identifier.type == "Bamboo")
+        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(true);
         }
@@ -62,7 +62,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             plantInteractionBtn.gameObject.SetActive(true);
         }
-        else if (identifier.type == "Bamboo")
+        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(true);
         }
@@ -77,7 +77,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             plantInteractionBtn.gameObject.SetActive(false);
         }
-        else if (identifier.type == "Bamboo")
+        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(false);
         }
@@ -108,6 +108,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
                 collectableItemAnimation.gameObject.SetActive(true); // exibe
                 StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
             }
+            if(task_ID.name == "Bamboo") { return; } // para que nao desative o bamboo
         }
         PlayPlantSound();
         Destroy(identifier.gameObject); // some com a planta que foi coletada
@@ -155,6 +156,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             r.isKinematic = false;
         }
+
+        CollectPlant();
     }
 
     private void PlayPlantSound()

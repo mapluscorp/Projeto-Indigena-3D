@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3163170946955162814}
   - component: {fileID: 3163170946956489886}
   - component: {fileID: 3163170946957456990}
+  - component: {fileID: 1317599669343479763}
   m_Layer: 0
   m_Name: Rock7
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3163170946955520158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.4913, y: 5.4913, z: 5.4913006}
+  m_LocalScale: {x: 14.131311, y: 14.131311, z: 14.131313}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1317599669343479763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163170946955520158}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2574739, y: 0.34601158, z: 0.29081383}
+  m_Center: {x: 0.011583034, y: 0.17364886, z: 0.00000011029232}

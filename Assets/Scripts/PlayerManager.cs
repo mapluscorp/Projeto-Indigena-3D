@@ -6,13 +6,15 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 {
     [Header("References")]
     public Camera mainCamera;
+    public DynamicJoystick joytick;
 
     [Header("Control")]
     public float playerSpeed = 1;
 
     private CharacterController controller;
     private Animator anim;
-    private Vector3 stickDirection;
+    [HideInInspector]
+    public Vector3 stickDirection;
 
     RaycastHit hit;
 
@@ -36,7 +38,10 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     {
         if (!CanMove) { return; }
 
-        stickDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        float horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
+        float vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
+
+        stickDirection = new Vector3(horizontal, 0, vertical);
 
         float x = mainCamera.transform.TransformDirection(stickDirection).x;
         float z = mainCamera.transform.TransformDirection(stickDirection).z;

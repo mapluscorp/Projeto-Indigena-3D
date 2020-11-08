@@ -6,8 +6,14 @@ using UnityEngine.UI;
 public class InteractionManager : MonoBehaviour // esse script detecta itens no cenario e ativa o botao de interacao
 {
     [Header("References")]
-    public Button plantInteractionBtn;
     public Image collectableItemAnimation;
+    public GameObject machete;
+
+    [Header("Buttons")]
+    public Button plantInteractionBtn;
+    public Button macheteBtn;
+
+    [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
     public AudioSource footstepSource; // audio que toca o som dos passos
 
@@ -36,9 +42,14 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
+
         if (identifier.type == "Plant") // confere se eh uma planta
         {
             plantInteractionBtn.gameObject.SetActive(true); // exibe o botao de interagir com plantas
+        }
+        else if (identifier.type == "Bamboo")
+        {
+            macheteBtn.gameObject.SetActive(true);
         }
     }
 
@@ -46,9 +57,14 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         identifier = other.GetComponentInParent<Identifier>();
         if (identifier == null) { return; }
+
         if (identifier.type == "Plant")
         {
             plantInteractionBtn.gameObject.SetActive(true);
+        }
+        else if (identifier.type == "Bamboo")
+        {
+            macheteBtn.gameObject.SetActive(true);
         }
     }
 
@@ -56,18 +72,25 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         identifier = other.GetComponentInParent<Identifier>();
         if (identifier == null) { return; }
+
         if (identifier.type == "Plant")
         {
             plantInteractionBtn.gameObject.SetActive(false);
+        }
+        else if (identifier.type == "Bamboo")
+        {
+            macheteBtn.gameObject.SetActive(false);
         }
         identifier = null;
     }
 
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
     {
+        anim.SetFloat("PlayerSpeed", 0);
         playerManager.CanMove = false;
         yield return new WaitForSeconds(time);
         playerManager.CanMove = true;
+        machete.SetActive(false);
     }
 
     public void CollectPlant() // chamado pela animacao de coletar planta
@@ -109,6 +132,29 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         }
         source.PlayOneShot(increaseSound); // icone da planta chegou ate a barra
         collectableItemAnimation.gameObject.SetActive(false);
+    }
+
+    public void UseMachete()
+    {
+        anim.SetTrigger("UseMachete");
+        machete.SetActive(true);
+        StartCoroutine(HoldMovement(1.4f));
+    }
+
+    public void CutBamboo() // metodo chamado pela animacao
+    {
+        AudioClip clip = Resources.Load<AudioClip>("Audio/Machete");
+        source.PlayOneShot(clip);
+
+        Rigidbody[] rb = identifier.transform.GetComponentsInChildren<Rigidbody>();
+
+        identifier.transform.GetChild(1).gameObject.SetActive(false); // trigger do bamboo
+        macheteBtn.gameObject.SetActive(false); // esconde o botao
+
+        foreach (Rigidbody r in rb)
+        {
+            r.isKinematic = false;
+        }
     }
 
     private void PlayPlantSound()

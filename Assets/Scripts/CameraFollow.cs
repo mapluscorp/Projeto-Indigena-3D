@@ -12,10 +12,18 @@ public class CameraFollow : MonoBehaviour
 	public float height = 5.0f;
 	// How much we 
 	public float heightDamping = 2.0f;
-	public float rotationDamping = 3.0f;
+	public float rotationDamping = 0.5f;
+
+	private PlayerManager playerManager;
 
 	// Place the script in the Camera-Control group in the component menu
 	[AddComponentMenu("Camera-Control/Smooth Follow")]
+
+	// Place the script in the Camera-Control group in the component menu
+	private void Start()
+	{
+		playerManager = target.GetComponentInParent<PlayerManager>();
+	}
 
 	void LateUpdate()
 	{
@@ -29,8 +37,10 @@ public class CameraFollow : MonoBehaviour
 		float currentRotationAngle = transform.eulerAngles.y;
 		float currentHeight = transform.position.y;
 
+		float damping = playerManager.stickDirection.x > 0 || playerManager.stickDirection.z > 0 ? rotationDamping : 0.2f;
+
 		// Damp the rotation around the y-axis
-		currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+		currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, damping * Time.deltaTime);
 
 		// Damp the height
 		currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);

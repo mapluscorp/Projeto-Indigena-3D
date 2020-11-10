@@ -34,6 +34,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 
     public void PullPlant() // chamado pelo botao de interacao na UI
     {
+        if(!playerManager.CanInteract) { return; }
         anim.SetTrigger("PullPlant");
         StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
     }
@@ -87,9 +88,9 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
     {
         anim.SetFloat("PlayerSpeed", 0);
-        playerManager.CanMove = false;
+        playerManager.CanInteract = false;
         yield return new WaitForSeconds(time);
-        playerManager.CanMove = true;
+        playerManager.CanInteract = true;
         machete.SetActive(false);
     }
 
@@ -137,6 +138,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 
     public void UseMachete()
     {
+        if (!playerManager.CanInteract) { return; }
         anim.SetTrigger("UseMachete");
         machete.SetActive(true);
         StartCoroutine(HoldMovement(1.4f));

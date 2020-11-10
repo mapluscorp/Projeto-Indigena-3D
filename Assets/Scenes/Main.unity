@@ -10144,6 +10144,12 @@ PrefabInstance:
       propertyPath: portugues.Array.data[6]
       value: Poderia me ajudar a colher algumas?
       objectReference: {fileID: 0}
+    - target: {fileID: 2350756196103953481, guid: 6ed3b6af58781f94a88c92ea9d2295d5,
+        type: 3}
+      propertyPath: characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed56a94f518cb7a43aacf2b77909e511,
+        type: 3}
     - target: {fileID: 4395651880339104043, guid: 6ed3b6af58781f94a88c92ea9d2295d5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18530,6 +18536,12 @@ PrefabInstance:
       value: "Aproveite e leve alguns legumes que encontrar no caminho. Ele ir\xE1
         gostar."
       objectReference: {fileID: 0}
+    - target: {fileID: 2350756196103953481, guid: 6ed3b6af58781f94a88c92ea9d2295d5,
+        type: 3}
+      propertyPath: characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed56a94f518cb7a43aacf2b77909e511,
+        type: 3}
     - target: {fileID: 4395651880339104043, guid: 6ed3b6af58781f94a88c92ea9d2295d5,
         type: 3}
       propertyPath: m_LocalPosition.x

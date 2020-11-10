@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     RaycastHit hit;
 
-    public bool CanMove { get; set; }
+    public bool CanInteract { get; set; }
 
     public bool CanUseMachete { get; set; }
 
@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     {
         controller = this.GetComponentInChildren<CharacterController>();
         anim = this.GetComponentInChildren<Animator>();
-        CanMove = true;
+        CanInteract = true;
         CanUseMachete = true;
     }
 
@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Move()
     {
-        if (!CanMove) { return; }
+        if (!CanInteract) { return; }
 
         float horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
         float vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Rotate()
     {
-        if (!CanMove) { return; }
+        if (!CanInteract) { return; }
 
         Vector3 rotationOffset = mainCamera.transform.TransformDirection(stickDirection) * 4f;
         rotationOffset.y = 0;

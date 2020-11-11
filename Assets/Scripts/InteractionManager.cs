@@ -9,6 +9,9 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Image collectableItemAnimation;
     public GameObject machete;
 
+    [Header("GameObjects")]
+    public GameObject pari;
+
     [Header("Buttons")]
     public Button plantInteractionBtn;
     public Button macheteBtn;
@@ -32,12 +35,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         increaseSound = Resources.Load<AudioClip>("Audio/Pop");
     }
 
-    public void PullPlant() // chamado pelo botao de interacao na UI
-    {
-        if(!playerManager.CanInteract) { return; }
-        anim.SetTrigger("PullPlant");
-        StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
-    }
+    #region Trigger Management
 
     private void OnTriggerEnter(Collider other)
     {
@@ -85,6 +83,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         identifier = null;
     }
 
+    #endregion
+    
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
     {
         anim.SetFloat("PlayerSpeed", 0);
@@ -92,6 +92,15 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         yield return new WaitForSeconds(time);
         playerManager.CanInteract = true;
         machete.SetActive(false);
+    }
+
+    #region Plant
+
+    public void PullPlant() // chamado pelo botao de interacao na UI
+    {
+        if (!playerManager.CanInteract) { return; }
+        anim.SetTrigger("PullPlant");
+        StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
     }
 
     public void CollectPlant() // chamado pela animacao de coletar planta
@@ -116,6 +125,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         plantInteractionBtn.gameObject.SetActive(false);
     }
 
+    #endregion
+
     IEnumerator CollectableAnimator(Transform targetPos) // animacao do item sendo coletado
     {
         float timeElapsed = 0;
@@ -134,6 +145,22 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         }
         source.PlayOneShot(increaseSound); // icone da planta chegou ate a barra
         collectableItemAnimation.gameObject.SetActive(false);
+    }
+
+    public void Build(string obj)
+    {
+        if(obj == "Pari")
+        {
+            StartCoroutine(BuildPari());
+        }
+    }
+
+    IEnumerator BuildPari()
+    {
+        StartCoroutine(HoldMovement(5));
+        anim.SetTrigger("PullPlant");
+        yield return new WaitForSeconds(3);
+        pari.SetActive(true);
     }
 
     public void UseMachete()
@@ -162,6 +189,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         CollectPlant();
     }
 
+    #region Sound
+
     private void PlayPlantSound()
     {
         AudioClip clip = Resources.Load<AudioClip>("Audio/PushPlant");
@@ -172,5 +201,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         footstepSource.Play();
     }
+
+    #endregion
 
 }

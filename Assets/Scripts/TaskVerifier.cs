@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TaskVerifier : MonoBehaviour
 {
+    public bool debugMode = false;
     public string[] tasks;
 
     private Transform tasksParent;
@@ -18,6 +19,8 @@ public class TaskVerifier : MonoBehaviour
     public bool Verify()
     {
         int current = 0;
+
+        if(debugMode) { return true; }
 
         if(tasks.Length == 0) { return true; } // nao requisita nenhuma task
 

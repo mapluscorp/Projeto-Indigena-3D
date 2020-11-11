@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo GenerateTask deve ser chamado por outro script
@@ -12,6 +13,7 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
     public int target;
     private Transform parent;
     public bool taskCompleted = false;
+    public UnityEvent onCreateTask;
 
     private bool HasCreated { get; set; }
 
@@ -41,5 +43,6 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
         taskScript.target = target; // atualiza o valor objetivo da task
         taskScript.GetComponent<Identifier>().name = taskName; // atualiza o nome da task
         taskScript.whoMadeTheTask = this.GetComponent<TaskMaker>(); // marca quem criou a task
+        onCreateTask.Invoke();
     }
 }

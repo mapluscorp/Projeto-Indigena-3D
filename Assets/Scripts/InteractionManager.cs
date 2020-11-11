@@ -118,7 +118,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
                 collectableItemAnimation.gameObject.SetActive(true); // exibe
                 StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
             }
-            if(task_ID.name == "Bamboo") { return; } // para que nao desative o bamboo
+            if(task_ID.name == "Bamboo" || task_ID.name == "Pari") { return; } // para que nao desative o bamboo
         }
         PlayPlantSound();
         Destroy(identifier.gameObject); // some com a planta que foi coletada
@@ -160,6 +160,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         StartCoroutine(HoldMovement(5));
         anim.SetTrigger("PullPlant");
         yield return new WaitForSeconds(3);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/Magic");
+        source.PlayOneShot(clip);
         pari.SetActive(true);
     }
 
@@ -179,6 +181,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         Rigidbody[] rb = identifier.transform.GetComponentsInChildren<Rigidbody>();
 
         identifier.transform.GetChild(1).gameObject.SetActive(false); // trigger do bamboo
+        StartCoroutine(WaitToDestroy(identifier.gameObject, 2)); // retira os destrocos do bamboo do chao
         macheteBtn.gameObject.SetActive(false); // esconde o botao
 
         foreach (Rigidbody r in rb)
@@ -187,6 +190,12 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         }
 
         CollectPlant();
+    }
+
+    IEnumerator WaitToDestroy(GameObject obj, float time) // destroi um objeto apos certo periodo de tempo
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
     }
 
     #region Sound

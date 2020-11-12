@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     public GameObject ContinueButton;
     public GameObject backButton;
 
+    public Button talkBtn;
+
     private short currentIndex;
     private Animator anim;
     private GameObject display;
@@ -35,6 +37,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     public void Begin() // chamado pelo botao de iniciar dialogo na UI
     {
         anim.SetTrigger("Open");
+        talkBtn.gameObject.SetActive(false);
         Continue();
         foreach(TaskSlot task in completedTasks) // manda as tasks ja completadas embora
         { 

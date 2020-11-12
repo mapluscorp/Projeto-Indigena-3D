@@ -50409,6 +50409,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ancia@Standing W_Briefcase Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 4793427001995664668, guid: 3350b961a24179e45a457370a99648f4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -398074858295784331, guid: 3350b961a24179e45a457370a99648f4,
+        type: 3}
     - target: {fileID: 5866666021909216657, guid: 3350b961a24179e45a457370a99648f4,
         type: 3}
       propertyPath: m_Controller

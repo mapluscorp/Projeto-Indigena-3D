@@ -15,6 +15,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     [Header("Buttons")]
     public Button plantInteractionBtn;
     public Button macheteBtn;
+    public Button pariBtn;
 
     [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -41,6 +42,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
+        if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
 
         if (identifier.type == "Plant") // confere se eh uma planta
         {
@@ -50,21 +52,26 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             macheteBtn.gameObject.SetActive(true);
         }
+        else if(identifier.type == "Pari")
+        {
+            pariBtn.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        identifier = other.GetComponentInParent<Identifier>();
+        /*identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if (identifier == null) { return; }
+        if (CheckForTaskExistence() == false) return;
 
-        if (identifier.type == "Plant")
+        if (identifier.type == "Plant") // confere se eh uma planta
         {
-            plantInteractionBtn.gameObject.SetActive(true);
+            plantInteractionBtn.gameObject.SetActive(true); // exibe o botao de interagir com plantas
         }
         else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(true);
-        }
+        }*/
     }
 
     private void OnTriggerExit(Collider other)
@@ -79,6 +86,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(false);
+        }
+        else if (identifier.type == "Pari")
+        {
+            pariBtn.gameObject.SetActive(false);
         }
         identifier = null;
     }
@@ -101,6 +112,19 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         if (!playerManager.CanInteract) { return; }
         anim.SetTrigger("PullPlant");
         StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
+    }
+
+    private bool CheckForTaskExistence()
+    {
+        foreach (Transform task in taskGroup) // confere as tasks existentes
+        {
+            Identifier task_ID = task.GetComponent<Identifier>(); // pega a referencia da task
+            if (task_ID.name.Contains(identifier.name))
+            {
+                return true; // task existe
+            }
+        }
+        return false; // task nao existe
     }
 
     public void CollectPlant() // chamado pela animacao de coletar planta

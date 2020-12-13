@@ -51,7 +51,9 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         if (x > 1) x = 1; // assegura que o jogador nao ira se mover mais rapido em diagonal
         if (z > 1) z = 1;
 
-        controller.Move(new Vector3(x,-hit.distance, z) * Time.deltaTime * playerSpeed);
+        float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
+
+        controller.Move(new Vector3(x,-hit.distance, z) * Time.deltaTime * playerSpeed * multiplier);
         anim.SetFloat("PlayerSpeed", Vector3.ClampMagnitude(stickDirection, 1).magnitude, 0.05f, Time.deltaTime); // clamp para limitar a 1, visto que a diagonal seria de 1.4
     }
 

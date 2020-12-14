@@ -22,7 +22,7 @@ public class DialogueHolder : MonoBehaviour // esse script guarda as falas e env
         dialogueManager.sentences.Clear(); // limpa a lista
         dialogueManager.characterSprite.sprite = characterSprite;
         dialogueManager.characterName.text = characterName;
-
+        dialogueManager.talkIcon = transform.parent.parent.Find("Talk Icon").gameObject; // envia referencia do icone de dialogo
         //TaskMaker taskMaker = this.GetComponent<TaskMaker>(); // confere se ha um task generator neste NPC
         //if (taskMaker != null) { dialogueManager.taskMaker = taskMaker; } // Envia o script contendo as informacoes da task
 

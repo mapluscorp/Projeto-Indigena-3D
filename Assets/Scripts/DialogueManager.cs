@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     public List<string> sentences;
     public Image characterSprite;
     public Text characterName;
+    public GameObject talkIcon;
 
     public Text dialogueText;
     public GameObject ContinueButton;
@@ -48,6 +49,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
             task.GetComponent<Animator>().SetTrigger("Complete");
         }
         completedTasks.Clear();
+        talkIcon.SetActive(false); // desativa o icone de dialogo ao lado do NPC
     }
 
     public void Continue() // chamado cada vez que o player clica no balao de dialogo

@@ -20,6 +20,9 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
     private AudioClip completeSound;
     private AudioClip notificationSound;
 
+    [HideInInspector]
+    public Transform NPCGroupParent;
+
     public bool isCompleted { get; set; }
 
     void Start()
@@ -45,12 +48,25 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
     {
         current = target; // impede de ter um progresso maior que o target
         isCompleted = true; // marca essa task como completada
-        whoMadeTheTask.taskCompleted = true; // avisa o script que criou a task, que ela esta agora completa
+        whoMadeTheTask.MarkTaskAsCompleted(); // avisa o script que criou a task, que ela esta agora completa
         foreach(TaskMaker maker in whoMadeTheTask.transform)
         {
             if(maker.taskCompleted == false) { return; } // caso uma das tasks requisitas ainda nao tenha sido cumprida
         }
         whoMadeTheTask.gameObject.SetActive(false); // desativa este dialogo pois ja completou todas as tasks
+        TellTheNPCs(); // avisa aos NPCs que a task foi concluida
+    }
+
+    private void TellTheNPCs() // avisa aos NPCs que a task foi concluida
+    {
+        foreach(Transform NPC in NPCGroupParent)
+        {
+            if(NPC.gameObject.activeSelf) // NPC esta ativo
+            {
+                print("Will check " + NPC.name);
+                NPC.GetComponent<NPCManager>().CheckForDialogueExistence();
+            }
+        }
     }
 
     public void RefreshProgressBar() // atualiza o tamanho da barra

@@ -25,7 +25,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     private Animator anim;
     private Transform taskGroup;
 
-    private Identifier identifier; // identifier do objeto que esta em trigger no momento
+    [SerializeField] private Identifier identifier; // identifier do objeto que esta em trigger no momento
     private AudioClip increaseSound;
 
     private void Start()
@@ -60,9 +60,9 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 
     private void OnTriggerStay(Collider other)
     {
-        /*identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
+        identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if (identifier == null) { return; }
-        if (CheckForTaskExistence() == false) return;
+        if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
 
         if (identifier.type == "Plant") // confere se eh uma planta
         {
@@ -71,7 +71,11 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
         {
             macheteBtn.gameObject.SetActive(true);
-        }*/
+        }
+        else if (identifier.type == "Pari")
+        {
+            pariBtn.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -119,7 +123,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         foreach (Transform task in taskGroup) // confere as tasks existentes
         {
             Identifier task_ID = task.GetComponent<Identifier>(); // pega a referencia da task
-            if (task_ID.name.Contains(identifier.name))
+            if (task_ID.name.Contains(identifier.name) && !task_ID.GetComponent<TaskSlot>().isCompleted)
             {
                 return true; // task existe
             }
@@ -155,6 +159,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         float timeElapsed = 0;
         float lerpDuration = 0.5f;
+
+        yield return new WaitForSeconds(0.1f); // espera um pouquinho antes de comecar
 
         Vector2 startPos = collectableItemAnimation.transform.position;
         Vector2 endPos = targetPos.position;

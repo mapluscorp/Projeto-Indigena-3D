@@ -16,6 +16,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Button plantInteractionBtn;
     public Button macheteBtn;
     public Button pariBtn;
+    public Button fruitInteractionBtn;
 
     [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -56,6 +57,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             pariBtn.gameObject.SetActive(true);
         }
+        else if(identifier.name == "Corn")
+        {
+            fruitInteractionBtn.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -76,6 +81,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             pariBtn.gameObject.SetActive(true);
         }
+        else if (identifier.name == "Corn")
+        {
+            fruitInteractionBtn.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -94,6 +103,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         else if (identifier.type == "Pari")
         {
             pariBtn.gameObject.SetActive(false);
+        }
+        else if (identifier.name == "Corn")
+        {
+            fruitInteractionBtn.gameObject.SetActive(false);
         }
         identifier = null;
     }
@@ -116,6 +129,35 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         if (!playerManager.CanInteract) { return; }
         anim.SetTrigger("PullPlant");
         StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
+    }
+
+    public void PickFruit() // chamado pelo botao de interacao na UI
+    {
+        if (!playerManager.CanInteract) { return; }
+        anim.SetTrigger("PickFruit");
+        StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
+    }
+
+    public void CollectFruit()
+    {
+        foreach (Transform task in taskGroup) // confere as tasks existentes
+        {
+            Identifier task_ID = task.GetComponent<Identifier>();
+            if (task_ID.name.Contains(identifier.name))
+            {
+                TaskSlot taskSlot = task.GetComponent<TaskSlot>();
+                if (taskSlot.isCompleted) { return; } // ja coletou tudo que precisava
+                taskSlot.IncrementProgress(1); // incrementa o progresso da task
+                collectableItemAnimation.transform.position = new Vector2(Screen.width / 2, Screen.height / 2); // posicao do jogador
+                collectableItemAnimation.sprite = taskSlot.icon.sprite; // icone da planta sendo coletada
+                collectableItemAnimation.gameObject.SetActive(true); // exibe
+                StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
+            }
+            if (task_ID.name == "Bamboo" || task_ID.name == "Pari") { return; } // para que nao desative o bamboo
+        }
+        PlayPlantSound();
+        Destroy(identifier.gameObject); // some com a planta que foi coletada
+        plantInteractionBtn.gameObject.SetActive(false);
     }
 
     private bool CheckForTaskExistence()

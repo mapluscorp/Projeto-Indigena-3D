@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     [Header("References")]
     public Camera mainCamera;
     public DynamicJoystick joytick;
+    public Transform fallPreventor;
 
     [Header("Control")]
     public float playerSpeed = 1;
@@ -16,7 +17,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     [HideInInspector]
     public Vector3 stickDirection;
 
-    RaycastHit hit;
+    RaycastHit groundHit;
 
     public bool CanInteract { get; set; }
 
@@ -42,7 +43,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Move()
     {
-        if (!CanInteract) { return; }
+        if (!CanInteract) { return; } // Nao move caso nao possa interagir com os controles
 
         float horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
         float vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
@@ -56,7 +57,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
         float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
 
-        controller.Move(new Vector3(x, IsGravityOn ? -hit.distance : 0, z) * Time.deltaTime * playerSpeed * multiplier);
+        controller.Move(new Vector3(x, IsGravityOn ? -groundHit.distance : 0, z) * Time.deltaTime * playerSpeed * multiplier);
         anim.SetFloat("PlayerSpeed", Vector3.ClampMagnitude(stickDirection, 1).magnitude, 0.05f, Time.deltaTime); // clamp para limitar a 1, visto que a diagonal seria de 1.4
     }
 
@@ -71,9 +72,10 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void RayCaster()
     {
-        if (Physics.Raycast(transform.GetChild(0).position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        if (Physics.Raycast(transform.GetChild(0).position, transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity))
         {
-            Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+            Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * groundHit.distance, Color.yellow);
         }
     }
+
 }

@@ -11,12 +11,16 @@ public class BoatManager : MonoBehaviour
     public float boatSpeed = 3f;
     public float boatTurnSpeed = 2f;
     public Transform targetTransform;
+    public GameObject paddle;
 
     private CharacterController controller;
     [HideInInspector]
     public Vector3 stickDirection;
 
     public bool IsEnabled { get; set; }
+
+    private float vertical;
+    private float horizontal;
 
     private void Start()
     {
@@ -35,10 +39,15 @@ public class BoatManager : MonoBehaviour
         }
     }
 
+    public void SetBoatPaddleOff()
+    {
+        paddle.SetActive(false);
+    }
+
     private void Move()
     {
-        float horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
-        float vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
+        horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
+        vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
 
         stickDirection = new Vector3(horizontal, 0, vertical);
 

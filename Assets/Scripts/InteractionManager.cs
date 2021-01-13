@@ -86,6 +86,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             print("Harbor");
             boatBtn.gameObject.SetActive(true);
         }
+        else
+        {
+            boatBtn.gameObject.SetActive(false);
+        }
 
         if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
 
@@ -136,27 +140,34 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     }
 
     #endregion
-    
+
+    public void SetPaddleOn() // Chamado pela animacao
+    {
+        paddle.SetActive(true);
+        identifier.GetComponentInParent<BoatManager>().SetBoatPaddleOff();
+    }
+
     public void Paddling()
     {
+        anim.SetTrigger("PickPaddle");
         playerManager.IsGravityOn = false;
         playerManager.CanInteract = false;
-        anim.SetBool("OnBoat", true);
         boatBtn.gameObject.SetActive(false);
         StartCoroutine(GetInBoat());
-        this.transform.root.parent = identifier.transform.parent; // poe o player dentro do barco como filho
     }
 
     IEnumerator GetInBoat()
     {
+        yield return new WaitForSeconds(5);
+        this.transform.root.parent = identifier.transform.parent; // poe o player dentro do barco como filho*/
+        anim.SetBool("OnBoat", true);
         while (Vector3.Distance(this.transform.position, boatTargetPos.position) > 0.1f)
         {
-            this.transform.position = Vector3.Lerp(transform.position, boatTargetPos.position, Time.deltaTime * 3.5f);
-            this.transform.rotation = Quaternion.Lerp(transform.rotation, boatTargetPos.rotation, Time.deltaTime * 3.5f);
+            this.transform.position = Vector3.Lerp(transform.position, boatTargetPos.position, Time.deltaTime * 5f);
+            this.transform.rotation = Quaternion.Lerp(transform.rotation, boatTargetPos.rotation, Time.deltaTime * 5f);
             yield return null;
         }
         identifier.GetComponentInParent<BoatManager>().IsEnabled = true;
-        paddle.SetActive(true);
     }
 
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo

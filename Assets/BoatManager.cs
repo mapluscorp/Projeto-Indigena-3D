@@ -8,7 +8,7 @@ public class BoatManager : MonoBehaviour
     public Animator playerAnim;
     public Camera mainCamera;
     public DynamicJoystick joytick;
-    public float boatSpeed = 1.5f;
+    public float boatSpeed = 2f;
     private CharacterController controller;
     [HideInInspector]
     public Vector3 stickDirection;
@@ -25,6 +25,7 @@ public class BoatManager : MonoBehaviour
     {
         if (IsEnabled)
         {
+            playerAnim.transform.root.parent = this.transform.parent;
             Move();
             Rotate();
         }
@@ -38,6 +39,7 @@ public class BoatManager : MonoBehaviour
         stickDirection = new Vector3(horizontal, 0, vertical);
 
         playerAnim.SetBool("Paddling", stickDirection.magnitude > 0.1f);
+        playerAnim.SetFloat("Horizontal", horizontal);
 
         float x = this.transform.TransformDirection(stickDirection).x;
         float z = this.transform.TransformDirection(stickDirection).z;
@@ -51,7 +53,7 @@ public class BoatManager : MonoBehaviour
 
     private void Rotate()
     {
-        Vector3 rotationOffset = this.transform.TransformDirection(stickDirection) * 3f;
+        Vector3 rotationOffset = this.transform.TransformDirection(stickDirection) * 2f;
         rotationOffset.y = 0;
         controller.transform.forward += Vector3.Lerp(controller.transform.forward, rotationOffset, Time.deltaTime * 0.2f);
     }

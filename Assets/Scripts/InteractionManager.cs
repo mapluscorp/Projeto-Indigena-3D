@@ -7,7 +7,11 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 {
     [Header("References")]
     public Image collectableItemAnimation;
+    public Transform boatTargetPos;
+
+    [Header("Tools")]
     public GameObject machete;
+    public GameObject paddle;
 
     [Header("GameObjects")]
     public GameObject pari;
@@ -17,6 +21,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Button macheteBtn;
     public Button pariBtn;
     public Button fruitInteractionBtn;
+    public Button boatBtn;
 
     [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -43,6 +48,13 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
+
+        if (identifier.name == "Boat" && anim.GetBool("Paddling") == false)
+        {
+            print("Harbor");
+            boatBtn.gameObject.SetActive(true);
+        }
+
         if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
 
         if (identifier.type == "Plant") // confere se eh uma planta
@@ -66,7 +78,15 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     private void OnTriggerStay(Collider other)
     {
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
+        if (identifier == null) { other.GetComponent<Identifier>(); }
         if (identifier == null) { return; }
+
+        if (identifier.name == "Boat" && anim.GetBool("Paddling") == false)
+        {
+            print("Harbor");
+            boatBtn.gameObject.SetActive(true);
+        }
+
         if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
 
         if (identifier.type == "Plant") // confere se eh uma planta
@@ -108,11 +128,37 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             fruitInteractionBtn.gameObject.SetActive(false);
         }
+        else if (identifier.name == "Harbor")
+        {
+            boatBtn.gameObject.SetActive(false);
+        }
         identifier = null;
     }
 
     #endregion
     
+    public void Paddling()
+    {
+        playerManager.IsGravityOn = false;
+        playerManager.CanInteract = false;
+        anim.SetBool("OnBoat", true);
+        boatBtn.gameObject.SetActive(false);
+        StartCoroutine(GetInBoat());
+        this.transform.root.parent = identifier.transform.parent; // poe o player dentro do barco como filho
+    }
+
+    IEnumerator GetInBoat()
+    {
+        while (Vector3.Distance(this.transform.position, boatTargetPos.position) > 0.1f)
+        {
+            this.transform.position = Vector3.Lerp(transform.position, boatTargetPos.position, Time.deltaTime * 3.5f);
+            this.transform.rotation = Quaternion.Lerp(transform.rotation, boatTargetPos.rotation, Time.deltaTime * 3.5f);
+            yield return null;
+        }
+        identifier.GetComponentInParent<BoatManager>().IsEnabled = true;
+        paddle.SetActive(true);
+    }
+
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
     {
         anim.SetFloat("PlayerSpeed", 0);

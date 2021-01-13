@@ -22,12 +22,15 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     public bool CanUseMachete { get; set; }
 
+    public bool IsGravityOn { get; set; }
+
     void Start()
     {
         controller = this.GetComponentInChildren<CharacterController>();
         anim = this.GetComponentInChildren<Animator>();
         CanInteract = true;
         CanUseMachete = true;
+        IsGravityOn = true;
     }
 
     void Update()
@@ -53,7 +56,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
         float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
 
-        controller.Move(new Vector3(x,-hit.distance, z) * Time.deltaTime * playerSpeed * multiplier);
+        controller.Move(new Vector3(x, IsGravityOn ? -hit.distance : 0, z) * Time.deltaTime * playerSpeed * multiplier);
         anim.SetFloat("PlayerSpeed", Vector3.ClampMagnitude(stickDirection, 1).magnitude, 0.05f, Time.deltaTime); // clamp para limitar a 1, visto que a diagonal seria de 1.4
     }
 

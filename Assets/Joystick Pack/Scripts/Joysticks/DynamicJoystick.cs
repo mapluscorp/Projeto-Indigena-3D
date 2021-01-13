@@ -6,21 +6,24 @@ using UnityEngine.EventSystems;
 public class DynamicJoystick : Joystick
 {
     private PlayerManager playerManager;
+    private BoatManager boatManager;
+
     public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 
     [SerializeField] private float moveThreshold = 1;
 
     protected override void Start()
     {
-        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
         MoveThreshold = moveThreshold;
         base.Start();
         background.gameObject.SetActive(false);
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        boatManager = GameObject.FindGameObjectWithTag("Boat").GetComponent<BoatManager>();
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if(playerManager.CanInteract == false) { return; }
+        if(!playerManager.CanInteract && !boatManager.IsEnabled) { return; }
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);

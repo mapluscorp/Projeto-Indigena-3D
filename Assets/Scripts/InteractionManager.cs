@@ -8,6 +8,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     [Header("References")]
     public Image collectableItemAnimation;
     public Transform boatTargetPos;
+    public BoatManager boatManager;
 
     [Header("Tools")]
     public GameObject machete;
@@ -30,6 +31,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     private PlayerManager playerManager;
     private Animator anim;
     private Transform taskGroup;
+    private PlayerSoundManager soundManager;
 
     [SerializeField] private Identifier identifier; // identifier do objeto que esta em trigger no momento
     private AudioClip increaseSound;
@@ -37,6 +39,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     private void Start()
     {
         playerManager = this.GetComponentInParent<PlayerManager>();
+        soundManager = this.GetComponent<PlayerSoundManager>();
         anim = this.GetComponentInChildren<Animator>();
         taskGroup = GameObject.Find("/Canvas/Task System/Task Group").transform;
         increaseSound = Resources.Load<AudioClip>("Audio/Pop");
@@ -49,9 +52,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
 
-        if (identifier.name == "Boat" && anim.GetBool("Paddling") == false)
+        if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
-            print("Harbor");
             boatBtn.gameObject.SetActive(true);
         }
 
@@ -81,9 +83,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         if (identifier == null) { other.GetComponent<Identifier>(); }
         if (identifier == null) { return; }
 
-        if (identifier.name == "Boat" && anim.GetBool("Paddling") == false)
+        if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
-            print("Harbor");
             boatBtn.gameObject.SetActive(true);
         }
         else
@@ -144,7 +145,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public void SetPaddleOn() // Chamado pela animacao
     {
         paddle.SetActive(true);
-        identifier.GetComponentInParent<BoatManager>().SetBoatPaddleOff();
+        boatManager.SetBoatPaddleOff();
+        boatBtn.gameObject.SetActive(false);
     }
 
     public void Paddling()
@@ -159,15 +161,15 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     IEnumerator GetInBoat()
     {
         yield return new WaitForSeconds(5);
-        this.transform.root.parent = identifier.transform.parent; // poe o player dentro do barco como filho*/
+        this.transform.root.parent = boatManager.transform; // poe o player dentro do barco como filho*/
         anim.SetBool("OnBoat", true);
         while (Vector3.Distance(this.transform.position, boatTargetPos.position) > 0.1f)
         {
-            this.transform.position = Vector3.Lerp(transform.position, boatTargetPos.position, Time.deltaTime * 5f);
-            this.transform.rotation = Quaternion.Lerp(transform.rotation, boatTargetPos.rotation, Time.deltaTime * 5f);
+            this.transform.position = Vector3.Lerp(transform.position, boatTargetPos.position, Time.deltaTime * 4f);
+            this.transform.rotation = Quaternion.Lerp(transform.rotation, boatTargetPos.rotation, Time.deltaTime * 4f);
             yield return null;
         }
-        identifier.GetComponentInParent<BoatManager>().IsEnabled = true;
+        boatManager.IsEnabled = true;
     }
 
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
@@ -212,7 +214,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             }
             if (task_ID.name == "Bamboo" || task_ID.name == "Pari") { return; } // para que nao desative o bamboo
         }
-        PlayPlantSound();
+        soundManager.PlayPlantSound();
         Destroy(identifier.gameObject); // some com a planta que foi coletada
         plantInteractionBtn.gameObject.SetActive(false);
     }
@@ -247,7 +249,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             }
             if(task_ID.name == "Bamboo" || task_ID.name == "Pari") { return; } // para que nao desative o bamboo
         }
-        PlayPlantSound();
+        soundManager.PlayPlantSound();
         Destroy(identifier.gameObject); // some com a planta que foi coletada
         plantInteractionBtn.gameObject.SetActive(false);
     }
@@ -326,20 +328,5 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         yield return new WaitForSeconds(time);
         Destroy(obj);
     }
-
-    #region Sound
-
-    private void PlayPlantSound()
-    {
-        AudioClip clip = Resources.Load<AudioClip>("Audio/PushPlant");
-        source.PlayOneShot(clip);
-    }
-
-    public void PlayFootstepSound() // chamado pela animacao de movimento
-    {
-        footstepSource.Play();
-    }
-
-    #endregion
 
 }

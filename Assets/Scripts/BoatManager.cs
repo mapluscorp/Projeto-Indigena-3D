@@ -8,8 +8,11 @@ public class BoatManager : MonoBehaviour
     public Animator playerAnim;
     public Camera mainCamera;
     public DynamicJoystick joytick;
-    public float boatSpeed = 3f;
+    public float boatMaxSpeed = 3f;
     public float boatTurnSpeed = 2f;
+    public float boatSpeed = 0f;
+    public float acceleration = 0.4f;
+
     public Transform targetTransform;
     public GameObject paddle;
 
@@ -21,6 +24,8 @@ public class BoatManager : MonoBehaviour
 
     private float vertical;
     private float horizontal;
+
+    private float lastAccelTime;
 
     private void Start()
     {
@@ -61,7 +66,24 @@ public class BoatManager : MonoBehaviour
 
         float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
 
-        controller.Move(new Vector3(x, 0, z) * Time.deltaTime * -boatSpeed * multiplier);
+        if(stickDirection.magnitude > 0.9f)
+        {
+            if (boatSpeed < boatMaxSpeed)
+            {
+                boatSpeed += acceleration * Time.deltaTime;
+            }
+
+            controller.Move(new Vector3(x, 0, z) * Time.deltaTime * -boatSpeed * multiplier);
+        }
+        else
+        {
+            if (boatSpeed > 0)
+            {
+                boatSpeed -= acceleration * Time.deltaTime;
+            }
+
+            controller.Move(this.transform.TransformDirection(Vector3.forward) * -boatSpeed * Time.deltaTime);
+        }
     }
 
     private void Rotate()

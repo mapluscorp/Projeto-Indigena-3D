@@ -7,7 +7,6 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     [Header("References")]
     public Camera mainCamera;
     public DynamicJoystick joytick;
-    public Transform fallPreventor;
 
     [Header("Control")]
     public float playerSpeed = 1;
@@ -24,6 +23,8 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     public bool CanUseMachete { get; set; }
 
     public bool IsGravityOn { get; set; }
+
+    public string GroundTag { get; set; }
 
     void Start()
     {
@@ -75,6 +76,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         if (Physics.Raycast(transform.GetChild(0).position, transform.TransformDirection(Vector3.down), out groundHit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * groundHit.distance, Color.yellow);
+            GroundTag = groundHit.collider.tag;
         }
     }
 

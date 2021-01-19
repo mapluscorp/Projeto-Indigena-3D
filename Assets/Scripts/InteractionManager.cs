@@ -45,6 +45,11 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         increaseSound = Resources.Load<AudioClip>("Audio/Pop");
     }
 
+    private void Update()
+    {
+        print("Identifier: " + identifier);
+    }
+
     #region Trigger Management
 
     private void OnTriggerEnter(Collider other)

@@ -40,6 +40,15 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         RayCaster();
         Move();
         Rotate();
+        Jump();
+    }
+
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("Jump");
+        }
     }
 
     private void Move()
@@ -57,6 +66,8 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         if (z > 1) z = 1;
 
         float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
+
+        IsGravityOn = !anim.GetCurrentAnimatorStateInfo(0).IsName("Jump");
 
         controller.Move(new Vector3(x, IsGravityOn ? -groundHit.distance : 0, z) * Time.deltaTime * playerSpeed * multiplier);
         anim.SetFloat("PlayerSpeed", Vector3.ClampMagnitude(stickDirection, 1).magnitude, 0.05f, Time.deltaTime); // clamp para limitar a 1, visto que a diagonal seria de 1.4

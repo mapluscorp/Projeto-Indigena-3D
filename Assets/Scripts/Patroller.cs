@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Patroller : MonoBehaviour
 {
+    public float agentSpeed = 3.5f;
+    public int idleProbability = 4;
     public Transform[] waypoints;
     
     private NavMeshAgent agent;
@@ -17,16 +19,18 @@ public class Patroller : MonoBehaviour
     void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
-        anim = this.GetComponent<Animator>();
+        anim = this.GetComponentInChildren<Animator>();
         CanMove = true;
+        StartCoroutine(Rest());
     }
 
     // Update is called once per frame
     void Update()
     {
+        print("CanMove: " + CanMove);
         if(CanMove)
         {
-            agent.speed = 3.5f;
+            agent.speed = agentSpeed;
             agent.SetDestination(GetWayPoint());
             anim.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         }
@@ -43,15 +47,17 @@ public class Patroller : MonoBehaviour
         {
             currentWP++;
             if(currentWP >= waypoints.Length) { currentWP = 0; }
-            if(Random.Range(0, 4) == 1) { StartCoroutine(Rest()); }
         }
         return waypoints[currentWP].position;
     }
 
     IEnumerator Rest()
     {
-        CanMove = false;
-        yield return new WaitForSeconds(4);
         CanMove = true;
+        yield return new WaitForSeconds(Random.Range(6, 15));
+        CanMove = false;
+        yield return new WaitForSeconds(Random.Range(6, 15));
+        print("Restarting Rest");
+        StartCoroutine(Rest());
     }
 }

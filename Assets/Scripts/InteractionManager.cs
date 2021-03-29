@@ -45,11 +45,6 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         increaseSound = Resources.Load<AudioClip>("Audio/Pop");
     }
 
-    private void Update()
-    {
-        print("Identifier: " + identifier);
-    }
-
     #region Trigger Management
 
     private void OnTriggerEnter(Collider other)
@@ -87,7 +82,6 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if (identifier == null) { other.GetComponent<Identifier>(); }
         if (identifier == null) { return; }
-
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
             boatBtn.gameObject.SetActive(true);

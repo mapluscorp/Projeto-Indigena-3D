@@ -27,7 +27,6 @@ public class Patroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("CanMove: " + CanMove);
         if(CanMove)
         {
             agent.speed = agentSpeed;
@@ -57,7 +56,6 @@ public class Patroller : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(6, 15));
         CanMove = false;
         yield return new WaitForSeconds(Random.Range(6, 15));
-        print("Restarting Rest");
         StartCoroutine(Rest());
     }
 }

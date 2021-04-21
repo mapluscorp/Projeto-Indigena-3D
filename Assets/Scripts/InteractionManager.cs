@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Button pariBtn;
     public Button fruitInteractionBtn;
     public Button boatBtn;
+    public Button boatExitBtn;
 
     [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -45,12 +47,15 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         increaseSound = Resources.Load<AudioClip>("Audio/Pop");
     }
 
+
     #region Trigger Management
 
     private void OnTriggerEnter(Collider other)
     {
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
+
+        identifier.gameObject.AddComponent<Outline>();
 
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
@@ -77,71 +82,25 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
-        if (identifier == null) { other.GetComponent<Identifier>(); }
-        if (identifier == null) { return; }
-        if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
-        {
-            boatBtn.gameObject.SetActive(true);
-        }
-        else
-        {
-            boatBtn.gameObject.SetActive(false);
-        }
-
-        if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
-
-        if (identifier.type == "Plant") // confere se eh uma planta
-        {
-            plantInteractionBtn.gameObject.SetActive(true); // exibe o botao de interagir com plantas
-        }
-        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
-        {
-            macheteBtn.gameObject.SetActive(true);
-        }
-        else if (identifier.type == "Pari")
-        {
-            pariBtn.gameObject.SetActive(true);
-        }
-        else if (identifier.name == "Corn")
-        {
-            fruitInteractionBtn.gameObject.SetActive(true);
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         identifier = other.GetComponentInParent<Identifier>();
 
-        if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
+        if(identifier == null) { return;}
+
+        Outline outline = identifier.gameObject.GetComponent<Outline>();
+        if (outline != null)
         {
-            boatBtn.gameObject.SetActive(false);
+            Destroy(outline);
         }
 
-        if (identifier == null) { return; }
+        plantInteractionBtn.gameObject.SetActive(false);
+        macheteBtn.gameObject.SetActive(false);
+        pariBtn.gameObject.SetActive(false);
+        fruitInteractionBtn.gameObject.SetActive(false);
+        boatBtn.gameObject.SetActive(false);
+        boatExitBtn.gameObject.SetActive(false);
 
-        if (identifier.type == "Plant")
-        {
-            plantInteractionBtn.gameObject.SetActive(false);
-        }
-        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
-        {
-            macheteBtn.gameObject.SetActive(false);
-        }
-        else if (identifier.type == "Pari")
-        {
-            pariBtn.gameObject.SetActive(false);
-        }
-        else if (identifier.name == "Corn")
-        {
-            fruitInteractionBtn.gameObject.SetActive(false);
-        }
-        else if (identifier.name == "Harbor")
-        {
-            boatBtn.gameObject.SetActive(false);
-        }
         identifier = null;
     }
 
@@ -150,7 +109,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public void SetPaddleOn() // Chamado pela animacao
     {
         paddle.SetActive(true);
-        boatManager.SetBoatPaddleOff();
+        boatManager.SetBoatPaddleState(false);
         boatBtn.gameObject.SetActive(false);
     }
 
@@ -175,6 +134,20 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             yield return null;
         }
         boatManager.IsEnabled = true;
+        boatExitBtn.gameObject.SetActive(true);
+    }
+
+    public void ExitBoat() // chamado pelo botao da UI
+    {
+        anim.SetBool("OnBoat", false);
+        anim.SetTrigger("Normal");
+        playerManager.IsGravityOn = true;
+        playerManager.CanInteract = true;
+        boatManager.IsEnabled = false;
+        paddle.SetActive(false);
+        boatManager.SetBoatPaddleState(true);
+        anim.transform.root.parent = null;
+        this.GetComponent<CharacterController>().Move(new Vector3(0,0,15));
     }
 
     IEnumerator HoldMovement(float time) // impede o movimento por um determinado periodo de tempo
@@ -199,10 +172,10 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         if (!playerManager.CanInteract) { return; }
         anim.SetTrigger("PickFruit");
-        StartCoroutine(HoldMovement(4.5f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
+        StartCoroutine(HoldMovement(2f)); // impede o movimento do player enquanto ele a animacao de coletar esta em execucao
     }
 
-    public void CollectFruit()
+    public void CollectFruit(Identifier identifier)
     {
         foreach (Transform task in taskGroup) // confere as tasks existentes
         {
@@ -220,8 +193,8 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
             if (task_ID.name == "Bamboo" || task_ID.name == "Pari") { return; } // para que nao desative o bamboo
         }
         soundManager.PlayPlantSound();
+        fruitInteractionBtn.gameObject.SetActive(false);
         Destroy(identifier.gameObject); // some com a planta que foi coletada
-        plantInteractionBtn.gameObject.SetActive(false);
     }
 
     private bool CheckForTaskExistence()
@@ -237,7 +210,13 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         return false; // task nao existe
     }
 
-    public void CollectPlant() // chamado pela animacao de coletar planta
+    public void CollectCurrentItem()
+    {
+        if(identifier.type == "Plant") { CollectPlant(identifier); }
+        else if (identifier.type == "Tree") { CollectFruit(identifier); }
+    }
+
+    public void CollectPlant(Identifier identifier) // chamado pela animacao de coletar planta
     {
         foreach(Transform task in taskGroup) // confere as tasks existentes
         {
@@ -304,34 +283,41 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public void UseMachete()
     {
         if (!playerManager.CanInteract) { return; }
+        print("Id: " + identifier);
         anim.SetTrigger("UseMachete");
         machete.SetActive(true);
         StartCoroutine(HoldMovement(1.4f));
+        StartCoroutine(Cut(identifier));
     }
 
-    public void CutBamboo() // metodo chamado pela animacao
+    IEnumerator Cut(Identifier identifier)
+    {
+        yield return new WaitForSeconds(0.8f);
+        CutBamboo(identifier);
+    }
+
+    public void CutBamboo(Identifier identifier) // metodo chamado pela animacao
     {
         AudioClip clip = Resources.Load<AudioClip>("Audio/Machete");
         source.PlayOneShot(clip);
 
-        Rigidbody[] rb = identifier.transform.GetComponentsInChildren<Rigidbody>();
+        if(identifier == null) { print("Null"); }
 
-        identifier.transform.GetChild(1).gameObject.SetActive(false); // trigger do bamboo
-        StartCoroutine(WaitToDestroy(identifier.gameObject, 2)); // retira os destrocos do bamboo do chao
+        Rigidbody[] rb = identifier.transform.GetComponentsInChildren<Rigidbody>();
+        print(rb.Length);
+
         macheteBtn.gameObject.SetActive(false); // esconde o botao
 
         foreach (Rigidbody r in rb)
         {
             r.isKinematic = false;
         }
+        CollectPlant(identifier);
 
-        CollectPlant();
-    }
+        Destroy(identifier.gameObject, 2); // retira os destrocos do bamboo do chao
 
-    IEnumerator WaitToDestroy(GameObject obj, float time) // destroi um objeto apos certo periodo de tempo
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(obj);
+        identifier.transform.GetChild(1).gameObject.SetActive(false); // trigger do bamboo
+        
     }
 
 }

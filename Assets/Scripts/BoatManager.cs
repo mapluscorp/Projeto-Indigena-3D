@@ -33,7 +33,7 @@ public class BoatManager : MonoBehaviour
         controller = this.GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsEnabled)
         {
@@ -44,15 +44,15 @@ public class BoatManager : MonoBehaviour
         }
     }
 
-    public void SetBoatPaddleOff()
+    public void SetBoatPaddleState(bool state)
     {
-        paddle.SetActive(false);
+        paddle.SetActive(state);
     }
 
     private void Move()
     {
-        horizontal = Mathf.Clamp(Input.GetAxis("Horizontal") + joytick.Horizontal, -1, 1);
-        vertical = Mathf.Clamp(Input.GetAxis("Vertical") + joytick.Vertical, -1, 1);
+        horizontal = Mathf.Clamp(InputManager.Horizontal() + joytick.Horizontal, -1, 1);
+        vertical = Mathf.Clamp(InputManager.Vertical() + joytick.Vertical, 0, 1);
 
         stickDirection = new Vector3(horizontal, 0, vertical);
 

@@ -63,7 +63,6 @@ public class TaskSlot : MonoBehaviour // esse script eh a barrinha da task na UI
         {
             if(NPC.gameObject.activeSelf) // NPC esta ativo
             {
-                print("Will check " + NPC.name);
                 NPC.GetComponent<NPCManager>().CheckForDialogueExistence();
             }
         }

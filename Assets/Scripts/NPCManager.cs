@@ -27,7 +27,7 @@ public class NPCManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player") { return; } // apenas pode ser triggado pelo jogador
-        this.gameObject.AddComponent<Outline>();
+        //this.gameObject.AddComponent<Outline>();
         GetDialogue(); // pega o dialogo correto
         if(dialogueHolder == null) { return; } // nao ha dialogos neste npc
         dialogueHolder.SendSentences();

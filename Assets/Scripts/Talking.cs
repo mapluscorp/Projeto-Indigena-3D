@@ -21,7 +21,6 @@ public class Talking : MonoBehaviour
     {
         rand = Random.Range(0.0f, 1.0f);
         anim.SetFloat("Talking", rand);
-        print(anim.GetFloat("Talking"));
         yield return new WaitForSeconds(Random.Range(minValue, maxValue));
         StartCoroutine(Randomizer());
     }

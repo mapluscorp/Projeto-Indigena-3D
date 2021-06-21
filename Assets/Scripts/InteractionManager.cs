@@ -55,7 +55,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
 
-        identifier.gameObject.AddComponent<Outline>();
+        //identifier.gameObject.AddComponent<Outline>();
 
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {

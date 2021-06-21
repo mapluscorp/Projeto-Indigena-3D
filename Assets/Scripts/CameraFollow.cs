@@ -25,7 +25,7 @@ public class CameraFollow : MonoBehaviour
 		playerManager = target.GetComponentInParent<PlayerManager>();
 	}
 
-	void LateUpdate()
+	void FixedUpdate()
 	{
 		// Early out if we don't have a target
 		if (!target) return;

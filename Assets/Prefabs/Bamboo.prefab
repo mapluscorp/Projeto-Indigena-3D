@@ -1071,6 +1071,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambu_cima
       objectReference: {fileID: 0}
+    - target: {fileID: -5411777610774209138, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d791b6be34f12a4ca3cae09798ecd22, type: 2}
+    - target: {fileID: -5411777610774209138, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 268d16bd6c8d152428ba20f95bfc0265, type: 2}
+    - target: {fileID: -4185076817518664305, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d791b6be34f12a4ca3cae09798ecd22, type: 2}
+    - target: {fileID: -4185076817518664305, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 268d16bd6c8d152428ba20f95bfc0265, type: 2}
     - target: {fileID: -323806208367946116, guid: 428095cf68d0c404d86a68bd68355690,
         type: 3}
       propertyPath: m_Name
@@ -1086,6 +1106,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: bambu_baixo
       objectReference: {fileID: 0}
+    - target: {fileID: 5491250249177346666, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d791b6be34f12a4ca3cae09798ecd22, type: 2}
+    - target: {fileID: 5491250249177346666, guid: 428095cf68d0c404d86a68bd68355690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 268d16bd6c8d152428ba20f95bfc0265, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 428095cf68d0c404d86a68bd68355690, type: 3}
 --- !u!4 &6516239013013623812 stripped

@@ -52,12 +52,12 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Death()
     {
-        if(anim.transform.position.y < -2 && IsAlive)
+        /*if(anim.transform.position.y < -2 && IsAlive)
         {
             IsAlive = false;
             print("Dead");
             StartCoroutine(Respawn());
-        }
+        }*/
     }
 
     IEnumerator Respawn()

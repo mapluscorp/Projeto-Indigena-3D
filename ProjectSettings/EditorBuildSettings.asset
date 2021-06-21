@@ -6,6 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: 07a0c080bee7ee746be516642f190dbe
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 233ac6baecd8f9545a0c73f63fb2717f
+  - enabled: 1
+    path: Assets/Scenes/Cestaria.unity
+    guid: 9590dd549dc0afa4fb67eac66484f374
+  - enabled: 1
+    path: Assets/Scenes/Memoria.unity
+    guid: 9e62a8adcd09ca24caddcd26ca8257e8
+  - enabled: 1
+    path: Assets/Scenes/Numerais.unity
+    guid: 4621cd489b074f44db8b196cf46500a1
+  - enabled: 1
+    path: Assets/Scenes/Quebra-Cabeca.unity
+    guid: 70fc46d3d08549d4fac4832e6c6188ce
+  - enabled: 1
+    path: Assets/Scenes/Pescaria.unity
+    guid: f8e087d882da7dd45a2d9508a1d4f7b9
+  - enabled: 1
+    path: Assets/Scenes/Palavras.unity
+    guid: 3c64fe84cd5adbf498a19e645793d82f
   m_configObjects: {}

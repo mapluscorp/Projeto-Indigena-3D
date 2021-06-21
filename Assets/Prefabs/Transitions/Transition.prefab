@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.3207547, g: 0.14381546, b: 0.052954778, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -134,7 +133,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.4056604, g: 0.22234097, b: 0.12820399, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -216,7 +214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6644157217193527083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30e0cdaad749a84d93be23c5d9d606e, type: 3}
+  m_Script: {fileID: 11500000, guid: 190fc231f318d6c49b03ed92857d9162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 387447291388652853}
@@ -226,7 +224,6 @@ MonoBehaviour:
   OnTransitionEnd:
     m_PersistentCalls:
       m_Calls: []
-  disableAfterEnd: 0
 --- !u!1 &7660651620386915253
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +284,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.5754717, g: 0.33245346, b: 0.20901565, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

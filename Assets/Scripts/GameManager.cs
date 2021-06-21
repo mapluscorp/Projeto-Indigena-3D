@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         int height = (int) (Screen.height * 0.8f);
         Screen.SetResolution(width, height, true);
         resolutionText.text = width.ToString() + "x" + height.ToString();
+        PlayerPrefs.SetString("Home", "Game");
     }
 
 }

@@ -19,7 +19,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
             if(other.GetComponentInParent<PlayerManager>().IsAlive)
-                CheckPointSystem.CurrentSpawnPosition = spawnPosition;
+                CheckPointSystem.CurrentSpawnPosition = spawnPosition.position;
     }
 
     public void SetMeshVisibility(bool state)

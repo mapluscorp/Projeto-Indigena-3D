@@ -55,7 +55,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
 
-        //identifier.gameObject.AddComponent<Outline>();
+        identifier.gameObject.AddComponent<Outline>();
 
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
@@ -278,12 +278,26 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         AudioClip clip = Resources.Load<AudioClip>("Audio/Magic");
         source.PlayOneShot(clip);
         pari.SetActive(true);
+
+        foreach (Transform task in taskGroup) // confere as tasks existentes
+        {
+            Identifier task_ID = task.GetComponent<Identifier>();
+            if (task_ID.name.Contains(identifier.name))
+            {
+                TaskSlot taskSlot = task.GetComponent<TaskSlot>();
+                if (taskSlot.isCompleted) { break; } // ja coletou tudo que precisava
+                taskSlot.IncrementProgress(1); // incrementa o progresso da task
+                collectableItemAnimation.transform.position = new Vector2(Screen.width / 2, Screen.height / 2); // posicao do jogador
+                collectableItemAnimation.sprite = taskSlot.icon.sprite; // icone da planta sendo coletada
+                collectableItemAnimation.gameObject.SetActive(true); // exibe
+                StartCoroutine(CollectableAnimator(taskSlot.transform)); // percorre o trajeto ate a janelinha de tasks
+            }
+        }
     }
 
     public void UseMachete()
     {
         if (!playerManager.CanInteract) { return; }
-        print("Id: " + identifier);
         anim.SetTrigger("UseMachete");
         machete.SetActive(true);
         StartCoroutine(HoldMovement(1.4f));
@@ -304,7 +318,6 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         if(identifier == null) { print("Null"); }
 
         Rigidbody[] rb = identifier.transform.GetComponentsInChildren<Rigidbody>();
-        print(rb.Length);
 
         macheteBtn.gameObject.SetActive(false); // esconde o botao
 

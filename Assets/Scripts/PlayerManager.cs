@@ -35,6 +35,10 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         CanUseMachete = true;
         IsGravityOn = true;
         IsAlive = true;
+        if(PlayerPrefs.HasKey("SpawnPosition"))
+        {
+            Spawn();
+        }
     }
 
     void FixedUpdate()
@@ -67,9 +71,19 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         Instantiate(waterRipple, pos, Quaternion.identity);
         this.transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds(2);
-        anim.transform.position = CheckPointSystem.CurrentSpawnPosition.position;
+        anim.transform.position = CheckPointSystem.CurrentSpawnPosition;
         this.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
+        IsAlive = true;
+        CanInteract = true;
+    }
+
+    private void Spawn()
+    {
+        CanInteract = false;
+        this.transform.GetChild(0).gameObject.SetActive(false);
+        anim.transform.position = CheckPointSystem.CurrentSpawnPosition;
+        this.transform.GetChild(0).gameObject.SetActive(true);
         IsAlive = true;
         CanInteract = true;
     }
@@ -132,6 +146,11 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
             Debug.DrawRay(transform.GetChild(0).position, transform.TransformDirection(Vector3.down) * groundHit.distance, Color.yellow);
             GroundTag = groundHit.collider.tag;
         }
+    }
+
+    public void SavePlayerPosition()
+    {
+        PlayerPrefsX.SetVector3("SpawnPosition", anim.transform.position);
     }
 
 }

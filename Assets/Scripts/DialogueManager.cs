@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour // script responsavel por exibir o dialogo na tela
@@ -29,6 +30,9 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
 
     public PlayerManager playerManager;
 
+    [HideInInspector]
+    public UnityEvent onEndDialogue;
+
     void Start()
     {
         currentIndex = 0;
@@ -40,6 +44,9 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
 
     public void Begin() // chamado pelo botao de iniciar dialogo na UI
     {
+        Animator playerAnim = playerManager.GetComponentInChildren<Animator>();
+        playerAnim.SetFloat("PlayerSpeed", 0);
+        playerAnim.SetTrigger("Idle");
         playerManager.CanInteract = false;
         anim.SetTrigger("Open");
         talkBtn.gameObject.SetActive(false);
@@ -71,6 +78,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
                 task.GenerateTask(); 
         } // gera a task na UI
         taskMaker = null;
+        onEndDialogue.Invoke();
     }
 
     public void DisplayNextSentence()

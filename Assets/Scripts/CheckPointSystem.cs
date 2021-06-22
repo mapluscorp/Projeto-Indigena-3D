@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CheckPointSystem : MonoBehaviour
 {
-    public static Transform CurrentSpawnPosition { get; set; }
+    public Transform initialPos;
+    public static Vector3 CurrentSpawnPosition { get; set; }
 
     public CheckPoint[] checkPoints;
 
@@ -12,6 +13,15 @@ public class CheckPointSystem : MonoBehaviour
 
     private void Start()
     {
+        if(!PlayerPrefs.HasKey("SpawnPosition") || !PlayerPrefs.HasKey("Stage"))
+        {
+            CurrentSpawnPosition = initialPos.position;
+        }
+        else
+        {
+            CurrentSpawnPosition = PlayerPrefsX.GetVector3("SpawnPosition");
+        }
+
         checkPoints = this.transform.GetComponentsInChildren<CheckPoint>();
 
         foreach(CheckPoint cp in checkPoints)

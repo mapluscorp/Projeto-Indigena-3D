@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo GenerateTask deve ser chamado por outro script
 {
+    public bool emptyTask;
     private NPCManager manager;
 
     public GameObject taskPrefab;
@@ -26,18 +27,10 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
         manager = this.transform.GetComponentInParent<NPCManager>();
         NPCGroupParent = this.transform.root;
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            GenerateTask();
-        }
-    }
-
     public void GenerateTask()
     {
-        if(HasCreated) { return; } // para nao criar essa task de novo
+        if(emptyTask) { onCreateTask.Invoke(); return; } // para apenas invokar e nao gerar task
+        if (HasCreated) { return; } // para nao criar essa task de novo
         HasCreated = true;
         GameObject task = Instantiate(taskPrefab, Vector3.zero, Quaternion.identity); // instancia ela na UI
         task.transform.SetParent(parent); // poe a task no lugar correto na hierarquia

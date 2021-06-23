@@ -1,0 +1,7 @@
+Stages
+
+0 - Begin
+1 - Nightshade
+2 - Pari
+3 - Corn
+4 - School

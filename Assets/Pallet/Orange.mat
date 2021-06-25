@@ -43,7 +43,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FalloffTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -59,6 +67,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -68,6 +80,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ToonShade:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -81,8 +105,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - _Alpha: 1
     - _BumpScale: 1
     - _ColorMask: 15
+    - _Cull: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _Distortion: 0.5
@@ -92,13 +118,15 @@ Material:
     - _FoamFalloff: 0
     - _FoamSmoothness: 0
     - _FoamSpecular: 0
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 1
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.005
+    - _OutlineWidth: 2
     - _Parallax: 0.02
     - _RimAmount: 0.716
     - _RimThreshold: 0.1
@@ -119,15 +147,22 @@ Material:
     - _WaterSpecular: 0
     - _WavesAmount: 8.87
     - _WavesAmplitude: 0.01
+    - _WindQuality: 0
+    - _ZTest: 0
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
     - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+    - _BaseScale: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 0.55914044, b: 0, a: 1}
     - _DeepColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShalowColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+  m_BuildTextureStacks: []

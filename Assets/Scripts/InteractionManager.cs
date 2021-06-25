@@ -23,6 +23,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Button macheteBtn;
     public Button pariBtn;
     public Button fruitInteractionBtn;
+    public Button collectBtn;
     public Button boatBtn;
     public Button boatExitBtn;
 
@@ -60,6 +61,11 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {
             boatBtn.gameObject.SetActive(true);
+        }
+
+        if (identifier.type == "Collectable")
+        {
+            collectBtn.gameObject.SetActive(true);
         }
 
         if (CheckForTaskExistence() == false) return; // confere se essa task esta em vigor
@@ -100,6 +106,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         fruitInteractionBtn.gameObject.SetActive(false);
         boatBtn.gameObject.SetActive(false);
         boatExitBtn.gameObject.SetActive(false);
+        collectBtn.gameObject.SetActive(false);
 
         identifier = null;
     }

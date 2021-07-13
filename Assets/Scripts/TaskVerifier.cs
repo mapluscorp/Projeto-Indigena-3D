@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TaskVerifier : MonoBehaviour
 {
-    public bool debugMode = false;
+    public bool validateAll = false;
     public string[] tasks;
 
     private Transform tasksParent;
@@ -16,11 +16,16 @@ public class TaskVerifier : MonoBehaviour
         dialogueManager = GameObject.Find("/Canvas/Dialogue System").GetComponent<DialogueManager>();
     }
 
+    public void ValidateAll()
+    {
+        validateAll = true;
+    }
+
     public bool Verify()
     {
         int current = 0;
 
-        if(debugMode && Application.isEditor) { return true; }
+        if(validateAll) { return true; }
 
         if(tasks.Length == 0) { return true; } // nao requisita nenhuma task
 

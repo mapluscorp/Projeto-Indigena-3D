@@ -26,6 +26,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public Button collectBtn;
     public Button boatBtn;
     public Button boatExitBtn;
+    public Button fishingBtn;
 
     [Header("Audio")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -142,6 +143,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         }
         boatManager.IsEnabled = true;
         boatExitBtn.gameObject.SetActive(true);
+        fishingBtn.gameObject.SetActive(true);
     }
 
     public void ExitBoat() // chamado pelo botao da UI

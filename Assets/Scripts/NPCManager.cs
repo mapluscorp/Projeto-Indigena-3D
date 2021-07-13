@@ -12,6 +12,8 @@ public class NPCManager : MonoBehaviour
     [HideInInspector]
     public GameObject talkIcon;
 
+    private bool justValidate;
+
     private void Awake()
     {
         dialogueGroup = transform.Find("Dialogue Group").transform;
@@ -22,6 +24,11 @@ public class NPCManager : MonoBehaviour
     private void OnEnable()
     {
         CheckForDialogueExistence();
+    }
+
+    public void JustValidate()
+    {
+        justValidate = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +54,7 @@ public class NPCManager : MonoBehaviour
         foreach(Transform dialogue in dialogueGroup)
         {
             TaskVerifier dialogue_verifier = dialogue.GetComponent<TaskVerifier>();
-            if(dialogue.gameObject.activeSelf && dialogue_verifier.Verify()) // dialogo ativo e com os requisitos cumpridos
+            if(dialogue.gameObject.activeSelf && (dialogue_verifier.Verify() || justValidate)) // dialogo ativo e com os requisitos cumpridos
             { 
                 dialogueHolder = dialogue.GetComponent<DialogueHolder>();
                 //talkIcon.SetActive(true); // exibe o icone de que ha um dialogo disponivel
@@ -55,7 +62,10 @@ public class NPCManager : MonoBehaviour
             }
         }
         dialogueHolder = null; // nenhum dialogo neste npc
-        talkIcon.SetActive(false); // esconde o icone de dialogo
+        if(!justValidate)
+        {
+            talkIcon.SetActive(false); // esconde o icone de dialogo
+        }
     }
 
     public bool CheckForDialogueExistence()
@@ -64,13 +74,16 @@ public class NPCManager : MonoBehaviour
         foreach (Transform dialogue in dialogueGroup)
         {
             TaskVerifier dialogue_verifier = dialogue.GetComponent<TaskVerifier>();
-            if (dialogue.gameObject.activeSelf && dialogue_verifier.Verify()) // dialogo ativo e com os requisitos cumpridos
+            if (dialogue.gameObject.activeSelf && (dialogue_verifier.Verify() || justValidate)) // dialogo ativo e com os requisitos cumpridos
             {
                 talkIcon.SetActive(true);
                 return true;
             }
         }
-        talkIcon.SetActive(false);
+        if (!justValidate)
+        {
+            talkIcon.SetActive(false); // esconde o icone de dialogo
+        }
         return false;
     }
 }

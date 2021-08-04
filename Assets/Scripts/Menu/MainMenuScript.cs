@@ -117,6 +117,7 @@ public class MainMenuScript : MonoBehaviour
     public void SetCurrentSlot(int value) // chamado pelo trash button
     {
         selectedSlot = value;
+        PlayerPrefs.SetInt("SelectedSlot", value);
     }
 
     public void CleanSlot() // chamado ao confirmar a exclusao

@@ -9,6 +9,12 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     public DynamicJoystick joytick;
     public GameObject waterRipple;
 
+    [Header("Bodies")]
+    public GameObject kameGirl;
+    public GameObject kameBoy;
+    public GameObject kairuGirl;
+    public GameObject kairuBoy;
+
     [Header("Control")]
     public float playerSpeed = 1;
 
@@ -38,6 +44,43 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         if(PlayerPrefs.HasKey("SpawnPosition"))
         {
             Spawn();
+        }
+        SetBody();
+    }
+
+    private void SetBody()
+    {
+        kameGirl.SetActive(false);
+        kameBoy.SetActive(false);
+        kairuGirl.SetActive(false);
+        kairuBoy.SetActive(false);
+
+        int selectedSlot = PlayerPrefs.GetInt("SelectedSlot");
+        if(PlayerPrefs.GetString("Type" + selectedSlot) == "Kame")
+        {
+            if (PlayerPrefs.GetString("Sex" + selectedSlot) == "Menino")
+            {
+                kameBoy.SetActive(true);
+            }
+            else if (PlayerPrefs.GetString("Sex" + selectedSlot) == "Menina")
+            {
+                kameGirl.SetActive(true);
+            }
+        }
+        else if (PlayerPrefs.GetString("Type" + selectedSlot) == "Kairu")
+        {
+            if (PlayerPrefs.GetString("Sex" + selectedSlot) == "Menino")
+            {
+                kairuBoy.SetActive(true);
+            }
+            else if (PlayerPrefs.GetString("Sex" + selectedSlot) == "Menina")
+            {
+                kairuGirl.SetActive(true);
+            }
+        }
+        else
+        {
+            Debug.LogError("Body Error");
         }
     }
 

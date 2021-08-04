@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     RaycastHit groundHit;
 
-    private float jumpForce = 0.1f;
+    public float jumpForce = 0.1f;
 
     public bool CanInteract { get; set; }
     public bool CanUseMachete { get; set; }
@@ -100,7 +100,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     IEnumerator JumpingStateManager()
     {
         IsJumping = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         IsJumping = false;
     }
 

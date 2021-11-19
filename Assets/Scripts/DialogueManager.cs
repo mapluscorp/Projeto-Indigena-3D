@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     [HideInInspector]
     public List<TaskSlot> completedTasks;
 
-    public PlayerManager playerManager;
+    public PlayerController playerController;
 
     [HideInInspector]
     public UnityEvent onEndDialogue;
@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     void Start()
     {
         currentIndex = 0;
-        playerManager = GameObject.Find("Player").GetComponent<PlayerManager>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         anim = this.transform.Find("Display/Dialogue Display").GetComponent<Animator>();
         display = this.transform.Find("Display").gameObject;
         source = this.GetComponent<AudioSource>();
@@ -44,10 +44,10 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
 
     public void Begin() // chamado pelo botao de iniciar dialogo na UI
     {
-        Animator playerAnim = playerManager.GetComponentInChildren<Animator>();
+        Animator playerAnim = playerController.GetComponentInChildren<Animator>();
         playerAnim.SetFloat("PlayerSpeed", 0);
         playerAnim.SetTrigger("Idle");
-        playerManager.CanInteract = false;
+        playerController.CanInteract = false;
         anim.SetTrigger("Open");
         talkBtn.gameObject.SetActive(false);
         Continue();
@@ -69,7 +69,7 @@ public class DialogueManager : MonoBehaviour // script responsavel por exibir o 
     {
         anim.SetTrigger("Close");
         yield return new WaitForSeconds(0.5f);
-        playerManager.CanInteract = true;
+        playerController.CanInteract = true;
         ResetSentences();
         display.SetActive(false);
         if(taskMaker != null) 

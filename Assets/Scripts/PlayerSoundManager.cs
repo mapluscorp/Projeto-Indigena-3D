@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSoundManager : MonoBehaviour
 {
     [Header("References")]
-    public PlayerManager playerManager;
+    public PlayerController playerManager;
 
     [Header("Sounds")]
     public AudioSource source; // audio que toca interacoes em geral
@@ -33,8 +33,8 @@ public class PlayerSoundManager : MonoBehaviour
     {
         //if(footstepSource.isPlaying) { return; }
 
-        if (playerManager.GroundTag == "Wood") { footstepSource.PlayOneShot(woodFootSound); }
-        else { footstepSource.PlayOneShot(grassFootSound); }
+        /*if (playerManager.GroundTag == "Wood") { footstepSource.PlayOneShot(woodFootSound); }
+        else { footstepSource.PlayOneShot(grassFootSound); }*/
     }
 
     public void PlayWaterPouringSound()

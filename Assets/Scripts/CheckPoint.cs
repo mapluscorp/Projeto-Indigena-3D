@@ -18,7 +18,7 @@ public class CheckPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            if(other.GetComponentInParent<PlayerManager>().IsAlive)
+            if(other.GetComponentInParent<PlayerController>().IsAlive)
                 CheckPointSystem.CurrentSpawnPosition = spawnPosition.position;
     }
 

@@ -51,8 +51,8 @@ public class BoatManager : MonoBehaviour
 
     private void Move()
     {
-        horizontal = Mathf.Clamp(InputManager.Horizontal() + joytick.Horizontal, -1, 1);
-        vertical = Mathf.Clamp(InputManager.Vertical() + joytick.Vertical, 0, 1);
+        horizontal = Mathf.Clamp(InputSystem.Horizontal() + joytick.Horizontal, -1, 1);
+        vertical = Mathf.Clamp(InputSystem.Vertical() + joytick.Vertical, 0, 1);
 
         stickDirection = new Vector3(horizontal, 0, vertical);
 

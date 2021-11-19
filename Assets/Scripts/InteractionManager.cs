@@ -32,7 +32,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public AudioSource source; // audio que toca interacoes em geral
     public AudioSource footstepSource; // audio que toca o som dos passos
 
-    private PlayerManager playerManager;
+    private PlayerController playerManager;
     private Animator anim;
     private Transform taskGroup;
     private PlayerSoundManager soundManager;
@@ -42,7 +42,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 
     private void Start()
     {
-        playerManager = this.GetComponentInParent<PlayerManager>();
+        playerManager = this.GetComponentInParent<PlayerController>();
         soundManager = this.GetComponent<PlayerSoundManager>();
         anim = this.GetComponentInChildren<Animator>();
         taskGroup = GameObject.Find("/Canvas/Task System/Task Group").transform;
@@ -75,7 +75,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
         {
             plantInteractionBtn.gameObject.SetActive(true); // exibe o botao de interagir com plantas
         }
-        else if (identifier.type == "Bamboo" && playerManager.CanUseMachete)
+        else if (identifier.type == "Bamboo"/* && playerManager.CanUseMachete*/)
         {
             macheteBtn.gameObject.SetActive(true);
         }
@@ -124,7 +124,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     public void Paddling()
     {
         anim.SetTrigger("PickPaddle");
-        playerManager.IsGravityOn = false;
+        ///playerManager.IsGravityOn = false;
         playerManager.CanInteract = false;
         boatBtn.gameObject.SetActive(false);
         StartCoroutine(GetInBoat());
@@ -150,7 +150,7 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
     {
         anim.SetBool("OnBoat", false);
         anim.SetTrigger("Normal");
-        playerManager.IsGravityOn = true;
+        ///playerManager.IsGravityOn = true;
         playerManager.CanInteract = true;
         boatManager.IsEnabled = false;
         paddle.SetActive(false);

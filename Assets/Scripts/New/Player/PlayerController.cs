@@ -6,6 +6,7 @@ public sealed class PlayerController : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float gravityForce;
 
     private PlayerMovementManager movement;
     private PlayerAnimationManager animation;
@@ -39,6 +40,7 @@ public sealed class PlayerController : MonoBehaviour
     {
         //RayCaster();
         movement.Move();
+        movement.Gravity(gravityForce);
         movement.Rotate();
         //Death();
     }

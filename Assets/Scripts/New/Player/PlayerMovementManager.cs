@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,11 @@ public sealed class PlayerMovementManager : MonoBehaviour
         animation.SetPlayerSpeed(Vector3.ClampMagnitude(stickDirection, 1).magnitude);
     }
 
+    public void Gravity(float gravityForce)
+    {
+        characterController.Move(new Vector3(0, -gravityForce * Time.deltaTime, 0));
+    }
+
     public void Rotate()
     {
         ///if (!controller.CanInteract) { return; }
@@ -62,7 +68,7 @@ public sealed class PlayerMovementManager : MonoBehaviour
 
     public void Jump()
     {
-        if (InputSystem.Jump() && !IsJumping && controller.IsGrounded)
+        if (InputSystem.Jump() && !IsJumping && characterController.isGrounded)
         {
             animation.Jump();
         }

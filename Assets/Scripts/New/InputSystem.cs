@@ -16,6 +16,6 @@ public class InputSystem : MonoBehaviour
 
     public static bool Jump()
     {
-        return Input.GetKey(KeyCode.Space);
+        return Input.GetKeyDown(KeyCode.Space);
     }
 }

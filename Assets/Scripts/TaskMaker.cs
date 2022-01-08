@@ -50,7 +50,7 @@ public class TaskMaker : MonoBehaviour // esse script gera uma task, o metodo Ge
         taskCompleted = true;
         if(manager.CheckForDialogueExistence()) // caso haja um proximo dialogo
         {
-            manager.talkIcon.SetActive(true); // ativa o icone de dialogo
+            manager.SetTalkIconVisibility(true); // ativa o icone de dialogo
         }
     }
 }

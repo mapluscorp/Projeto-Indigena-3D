@@ -54,10 +54,17 @@ public class InteractionManager : MonoBehaviour // esse script detecta itens no 
 
     private void OnTriggerEnter(Collider other)
     {
+        IInteractable interaction = other.GetComponent<IInteractable>();
+        if (interaction != null)
+        {
+            interaction.TriggerEnter();
+        }
+
+        return;
+
         identifier = other.GetComponentInParent<Identifier>(); // identificador do objeto
         if(identifier == null) { return; }
 
-        identifier.gameObject.AddComponent<Outline>();
 
         if (identifier.name == "Boat" && !anim.GetBool("OnBoat") && !anim.GetCurrentAnimatorStateInfo(0).IsName("PickingUp"))
         {

@@ -70,6 +70,7 @@ public sealed class PlayerMovementManager : MonoBehaviour
     {
         if (InputSystem.Jump() && !IsJumping && characterController.isGrounded)
         {
+            //IsJumping = true;
             animation.Jump();
         }
     }

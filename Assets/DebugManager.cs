@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DebugManager : MonoBehaviour
@@ -17,5 +18,6 @@ public class DebugManager : MonoBehaviour
     public void OnResetBtn()
     {
         PlayerPrefs.DeleteKey("Stage");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

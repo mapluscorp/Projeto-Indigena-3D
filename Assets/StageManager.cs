@@ -17,43 +17,48 @@ public class StageManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("SpawnPosition") || !PlayerPrefs.HasKey("Stage"))
         {
-            ExecutaStage(stage0);
+            ExecuteStage(stage0);
             return;
         }
+
+        InitState();
+    }
+
+    private void InitState()
+    {
         switch (PlayerPrefs.GetString("Stage"))
         {
             case "Begin":
-                ExecutaStage(stage0);
+                ExecuteStage(stage0);
                 break;
             case "Nightshade":
-                ExecutaStage(stage1);
+                ExecuteStage(stage1);
                 break;
             case "Pari":
-                ExecutaStage(stage2);
+                ExecuteStage(stage2);
                 break;
             case "Corn":
-                ExecutaStage(stage3);
+                ExecuteStage(stage3);
                 break;
             case "School":
-                ExecutaStage(stage4);
+                ExecuteStage(stage4);
                 break;
             case "LateSchool":
-                ExecutaStage(stage5);
+                ExecuteStage(stage5);
                 break;
             case "Forest":
-                ExecutaStage(stage6);
+                ExecuteStage(stage6);
                 break;
             case "Fishing":
-                ExecutaStage(stage7);
+                ExecuteStage(stage7);
                 break;
             default:
-                ExecutaStage(stage0);
+                ExecuteStage(stage0);
                 break;
         }
-
     }
 
-    private void ExecutaStage(GameObject[] stage)
+    private void ExecuteStage(GameObject[] stage)
     {
         foreach(GameObject s in stage)
         {
@@ -64,6 +69,12 @@ public class StageManager : MonoBehaviour
     public void SetStage(string name)
     {
         PlayerPrefs.SetString("Stage", name);
+    }
+    
+    public void SetAndExecuteStage(string name)
+    {
+        PlayerPrefs.SetString("Stage", name);
+        InitState();
     }
 
     public static void SetStageStatic(string name)

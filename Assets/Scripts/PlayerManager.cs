@@ -122,7 +122,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         if (x > 1) x = 1; // assegura que o jogador nao ira se mover mais rapido em diagonal
         if (z > 1) z = 1;
 
-        float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 2 : 1; // acelera o player no editor com o shift pressionado
+        float multiplier = Input.GetKey(KeyCode.LeftShift) && Application.isEditor ? 3 : 1; // acelera o player no editor com o shift pressionado
 
         IsGravityOn = !anim.GetCurrentAnimatorStateInfo(0).IsName("Jump");
 

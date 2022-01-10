@@ -9,6 +9,7 @@ public class DialogueHolder : MonoBehaviour // esse script guarda as falas e env
     public Sprite characterSprite;
     public string[] portugues;
     public string[] kaingang;
+    public string[] english;
     public float triggerDistance = 1;
 
     private DialogueManager dialogueManager;
@@ -44,6 +45,13 @@ public class DialogueHolder : MonoBehaviour // esse script guarda as falas e env
             for (int i = 0; i < kaingang.Length; i++)
             {
                 dialogueManager.sentences.Add(kaingang[i]);
+            }
+        }
+        else if(PlayerPrefs.GetInt("Idioma") == 2) // kaingang
+        {
+            for (int i = 0; i < english.Length; i++)
+            {
+                dialogueManager.sentences.Add(english[i]);
             }
         }
     }

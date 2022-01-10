@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        int width = (int) (Screen.width * 0.8f);
-        int height = (int) (Screen.height * 0.8f);
+        int width = (int) (Screen.width * 0.7f);
+        int height = (int) (Screen.height * 0.7f);
         Screen.SetResolution(width, height, true);
         resolutionText.text = width.ToString() + "x" + height.ToString();
         PlayerPrefs.SetString("Home", "Game");

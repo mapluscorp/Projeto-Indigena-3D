@@ -46,10 +46,11 @@ public class MemoryManager : MonoBehaviour
         {
             //card.cardFront = nameSprites[name]; /// deixa desativado, a carta usara a frente vazia que ja esta nela
             card.cardNumber = name; // carta recebe o numero dela
-            if(PlayerPrefs.GetInt("Idioma") == 0 ) // 0 == portugues
+            card.GetComponentInChildren<Text>().text = kaingangTexts[name];
+            /*if(PlayerPrefs.GetInt("Idioma") == 0 ) // 0 == portugues
                 card.GetComponentInChildren<Text>().text = portuguesTexts[name]; // seta o texto com a palavra
             else if (PlayerPrefs.GetInt("Idioma") == 1) // 1 == kaingang
-                card.GetComponentInChildren<Text>().text = kaingangTexts[name]; // seta o texto com a palavra
+                card.GetComponentInChildren<Text>().text = kaingangTexts[name];*/ // seta o texto com a palavra
             card.transform.GetChild(0).gameObject.SetActive(false); // deixa o texto desativado
             binary = 0; name++; // revesa o binario e incrementa o int do nome
         }

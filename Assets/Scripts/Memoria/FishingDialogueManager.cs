@@ -8,6 +8,7 @@ public class FishingDialogueManager : MonoBehaviour
 {
     public string[] portugues;
     public string[] kaingang;
+    public string[] english;
     public string[] arrayText;
     public GameObject[] imagesToShow;
     public Text dialogueText;
@@ -40,6 +41,8 @@ public class FishingDialogueManager : MonoBehaviour
             arrayText = portugues;
         else if (PlayerPrefs.GetInt("Idioma") == 1)
             arrayText = kaingang;
+        else if (PlayerPrefs.GetInt("Idioma") == 2)
+            arrayText = english;
     }
 
     public void DisplayNextSentence()

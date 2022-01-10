@@ -8,6 +8,7 @@ public class Idioma : MonoBehaviour
     public Text[] textos;
     public string[] portugues;
     public string[] kaingang;
+    public string[] english;
 
     void Start()
     {
@@ -32,6 +33,13 @@ public class Idioma : MonoBehaviour
             for (int i = 0; i < textos.Length; i++)
             {
                 textos[i].text = kaingang[i];
+            }
+        }
+        else if (PlayerPrefs.GetInt("Idioma") == 2) // 2 == english
+        {
+            for (int i = 0; i < textos.Length; i++)
+            {
+                textos[i].text = english[i];
             }
         }
     }

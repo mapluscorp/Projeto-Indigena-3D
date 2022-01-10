@@ -51,7 +51,8 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     void Update()
     {
-        Jump();
+        if(InputManager.Jump())
+            Jump();
     }
 
     private void Death()
@@ -90,13 +91,13 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Jump()
     {
-        if(InputManager.Jump() && !IsJumping && controller.isGrounded)
+        if(!IsJumping && controller.isGrounded)
         {
             anim.SetTrigger("Jump");
             StartCoroutine(JumpingStateManager());
         }
     }
-
+    
     IEnumerator JumpingStateManager()
     {
         IsJumping = true;

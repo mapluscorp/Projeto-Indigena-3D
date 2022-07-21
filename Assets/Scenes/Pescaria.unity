@@ -4973,7 +4973,7 @@ GameObject:
   - component: {fileID: 7378856659858122962}
   - component: {fileID: 7378856659858122964}
   - component: {fileID: 7378856659858122961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}

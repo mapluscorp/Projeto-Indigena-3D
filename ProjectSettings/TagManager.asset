@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Boat
   - Wood
+  - CorrectFish
+  - Fish
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - 
   - Post-Processing
   - Player
-  - 
-  - 
+  - Arrow
+  - Fish
   - 
   - 
   - 

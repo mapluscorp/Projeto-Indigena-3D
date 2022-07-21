@@ -175,7 +175,7 @@ public class FishScript : MonoBehaviour
         if (NumPeixe == 11) NumPeixe = 0; // Caso seja sorteado o 12, sera o peixe objetivo, 0. Isso aumenta a probabilidade da vinda dele em 2x
 
         Temporary_Bullet_Handler = Instantiate(Peixes[NumPeixe], new Vector3(position, Random.Range(MinRange, MaxRange), 0), Bullet_Emitter.transform.rotation) as GameObject; // Instancia o prefab nas configuracoes pre-configuradas
-        Temporary_Bullet_Handler.layer = Bullet_Emitter.layer; // Poe o peixe na mesma camada que o spawnador
+        Temporary_Bullet_Handler.layer = 11; // Poe o peixe na mesma camada que o spawnador
         Temporary_Bullet_Handler.transform.position = new Vector3 (Temporary_Bullet_Handler.transform.position.x, Temporary_Bullet_Handler.transform.position.y, Random.Range(-20.0f,-5.0f));
 
         if (FirstTime) // Confere se eh o priemiro peixe a ser spawnado

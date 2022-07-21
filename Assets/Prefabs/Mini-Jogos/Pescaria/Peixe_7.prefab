@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7924549371376231006}
   - component: {fileID: 554095288776883367}
   - component: {fileID: 6281805266911719811}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Peixe_7
   m_TagString: Fish
   m_Icon: {fileID: 0}
@@ -48,6 +48,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -140,7 +142,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.85, y: 3.44}
+    oldSize: {x: 7.84, y: 3.44}
     newSize: {x: 4, y: 2.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

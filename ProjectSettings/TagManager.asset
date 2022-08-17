@@ -8,6 +8,7 @@ TagManager:
   - Wood
   - CorrectFish
   - Fish
+  - Dialogue
   layers:
   - Default
   - TransparentFX

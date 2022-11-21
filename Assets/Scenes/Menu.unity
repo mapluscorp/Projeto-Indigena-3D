@@ -4285,8 +4285,8 @@ MonoBehaviour:
   SpriteAfterClick: 0
   ValorAposDiminuir: 0.9
   ValorAposAumentar: 1.1
-  overClip: {fileID: 8300000, guid: 2b54cb6207209414ba43743ff25f4b6d, type: 3}
-  downClip: {fileID: 8300000, guid: 6eda9691982c5c94fbaf2e9253a15b00, type: 3}
+  overClip: {fileID: 8300000, guid: 116f6be26cd83f64cb3af5dc19a74035, type: 3}
+  downClip: {fileID: 8300000, guid: 14bc53ac4d752b745be925e12551f779, type: 3}
   externalSource: {fileID: 1263702928}
 --- !u!114 &1688012599
 MonoBehaviour:

@@ -9,6 +9,12 @@ TagManager:
   - CorrectFish
   - Fish
   - Dialogue
+  - Compass
+  - Carrot
+  - Nightshade
+  - Bamboo
+  - compass_arrow
+  - Corn
   layers:
   - Default
   - TransparentFX

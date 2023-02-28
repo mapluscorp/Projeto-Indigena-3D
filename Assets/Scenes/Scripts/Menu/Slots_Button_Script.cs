@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Profiles;
 
 public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler, IPointerUpHandler, IPointerDownHandler
 {
@@ -47,7 +48,7 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
         if (!PlayerPrefs.HasKey("Type" + N_Button.ToString()) || PlayerPrefs.GetString("Type" + N_Button.ToString()) == "") // perfil vazio
         {
             mainMenuScript.OpenNameInsertScreen();
-        } 
+        }
         else if (!PlayerPrefs.HasKey("Sex" + N_Button.ToString()) || PlayerPrefs.GetString("Sex" + N_Button.ToString()) == "") // ainda nao escolheu menina ou menino
         {
             mainMenuScript.GoToSexSelection();
@@ -55,6 +56,10 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
         else // perfil completo
         {
             mainMenuScript.GoToMainMenu();
+            bool isKame = PlayerPrefs.GetString("Type" + N_Button.ToString()) == "Kame";
+            bool isMale = PlayerPrefs.GetString("Sex" + N_Button.ToString()) == "Menino";
+            Debug.Log("SAVE? " + ((int)(isKame ? (isMale ? PROFILE_TYPES.KAME_MALE : PROFILE_TYPES.KAME_FEMALE) : (isMale ? PROFILE_TYPES.KAMHRU_MALE : PROFILE_TYPES.KANHRU_FEMALE))).ToString());
+            PlayerPrefs.SetInt("profile_active", (int)(isKame ? (isMale ? PROFILE_TYPES.KAME_MALE : PROFILE_TYPES.KAME_FEMALE) : (isMale ? PROFILE_TYPES.KAMHRU_MALE : PROFILE_TYPES.KANHRU_FEMALE)));
         }
     }
 
@@ -64,15 +69,15 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
         {
             switch (PlayerPrefs.GetString("Type" + N_Button.ToString()))
             {
-            case "Kame":
-                pb.image.sprite = KameSprite[1];
-                break;
-            case "Kairu":
-                pb.image.sprite = KairuSprite[1];
-                break;
-            default:
-                pb.image.sprite = OffSprite[1];
-                break;
+                case "Kame":
+                    pb.image.sprite = KameSprite[1];
+                    break;
+                case "Kairu":
+                    pb.image.sprite = KairuSprite[1];
+                    break;
+                default:
+                    pb.image.sprite = OffSprite[1];
+                    break;
             }
         }
     }
@@ -81,16 +86,17 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
     {
         if (Application.platform != RuntimePlatform.Android)
         {
-            switch (PlayerPrefs.GetString("Type" + N_Button.ToString())){
-            case "Kame":
-                pb.image.sprite = KameSprite[0];
-                break;
-            case "Kairu":
-                pb.image.sprite = KairuSprite[0];
-                break;
-            default:
-                pb.image.sprite = OffSprite[0];
-                break;
+            switch (PlayerPrefs.GetString("Type" + N_Button.ToString()))
+            {
+                case "Kame":
+                    pb.image.sprite = KameSprite[0];
+                    break;
+                case "Kairu":
+                    pb.image.sprite = KairuSprite[0];
+                    break;
+                default:
+                    pb.image.sprite = OffSprite[0];
+                    break;
             }
         }
     }

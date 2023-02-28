@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Profiles;
 
 public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do player
 {
@@ -27,6 +28,8 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     public string GroundTag { get; set; }
     public bool IsJumping { get; set; }
     public bool IsAlive { get; set; }
+    [SerializeField]
+    public GameObject KAME_FEMALE, KAME_MALE, KANHRU_FEMALE, KAMHRU_MALE;
     void Start()
     {
         controller = this.GetComponentInChildren<CharacterController>();
@@ -35,9 +38,29 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         CanUseMachete = true;
         IsGravityOn = true;
         IsAlive = true;
-        if(PlayerPrefs.HasKey("SpawnPosition"))
+        if (PlayerPrefs.HasKey("SpawnPosition"))
         {
             Spawn();
+        }
+        Debug.Log("RER" + PlayerPrefs.GetInt("profile_active").ToString());
+        PROFILE_TYPES type = (PROFILE_TYPES)PlayerPrefs.GetInt("profile_active");
+        switch (type)
+        {
+            case PROFILE_TYPES.KAME_FEMALE:
+                KAME_FEMALE.SetActive(true);
+                break;
+
+            case PROFILE_TYPES.KAME_MALE:
+                KAME_MALE.SetActive(true);
+                break;
+
+            case PROFILE_TYPES.KANHRU_FEMALE:
+                KANHRU_FEMALE.SetActive(true);
+                break;
+
+            default:
+                KAMHRU_MALE.SetActive(true);
+                break;
         }
     }
 
@@ -51,7 +74,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     void Update()
     {
-        if(InputManager.Jump())
+        if (InputManager.Jump())
             Jump();
     }
 
@@ -91,13 +114,13 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Jump()
     {
-        if(!IsJumping && controller.isGrounded)
+        if (!IsJumping && controller.isGrounded)
         {
             anim.SetTrigger("Jump");
             StartCoroutine(JumpingStateManager());
         }
     }
-    
+
     IEnumerator JumpingStateManager()
     {
         IsJumping = true;
@@ -107,7 +130,7 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     private void Move()
     {
-        if(!IsAlive || !CanInteract) { return; }
+        if (!IsAlive || !CanInteract) { return; }
 
         //if(!IsAlive) { controller.Move(new Vector3(0, -groundHit.distance, 0) * Time.deltaTime * playerSpeed); return; }
 

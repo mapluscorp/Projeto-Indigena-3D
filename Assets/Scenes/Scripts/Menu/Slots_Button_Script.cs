@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Profiles;
 
 public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler, IPointerUpHandler, IPointerDownHandler
 {
@@ -15,6 +14,7 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
     public Sprite[] KairuSprite; // 0 = normal | 1 = over | 2 = clicked
     public Text myName; // nome do jogador deste slot
 
+    private Profile profile;
     void Start()
     {
         pb = GetComponent<Button>();
@@ -23,43 +23,43 @@ public class Slots_Button_Script : MonoBehaviour, IPointerExitHandler, IPointerE
 
     public void Refresh()
     {
-        switch (PlayerPrefs.GetString("Type" + N_Button.ToString()))
+        List<Profile> profiles = ProfileManager.Instance.GetProfiles();
+        profile = profiles.Count > N_Button ? profiles[N_Button] : null;
+        string tmp_name = PlayerPrefs.GetInt("Idioma") == 0 ? "Vazio" : "Kupré";
+        if (profile != null)
         {
-            case "Kame":
-                pb.image.sprite = KameSprite[0];
-                break;
-            case "Kairu":
-                pb.image.sprite = KairuSprite[0];
-                break;
-            default:
-                pb.image.sprite = OffSprite[0];
-                break;
+            switch (profile.playerType)
+            {
+                case PlayerType.KAME_FEMALE:
+                    pb.image.sprite = KameSprite[0];
+                    break;
+                case PlayerType.KAME_MALE:
+                    pb.image.sprite = KameSprite[0];
+                    break;
+                case PlayerType.KANHRU_FEMALE:
+                    pb.image.sprite = KairuSprite[0];
+                    break;
+                case PlayerType.KANHRU_MALE:
+                    pb.image.sprite = KairuSprite[0];
+                    break;
+                default:
+                    pb.image.sprite = OffSprite[0];
+                    break;
+            }
+            tmp_name = profile.name;
         }
-        string tmp_name = PlayerPrefs.GetString("Name" + N_Button.ToString());
-        if (PlayerPrefs.GetInt("Idioma") == 0) // portugues
-            myName.text = tmp_name.Length > 0 ? tmp_name : "Vazio"; // poe o nome do jogador no slot
-        if (PlayerPrefs.GetInt("Idioma") == 1) // kaingang
-            myName.text = tmp_name.Length > 0 ? tmp_name : "Kupré"; // poe o nome do jogador no slot
+        myName.text = tmp_name;
+
     }
 
     public void OnSelect() // metodo chamado ao clicar no slot
     {
-        MainMenuScript.selectedSlot = N_Button; // diz para o script do menu qual foi o slot selecionado
-        if (!PlayerPrefs.HasKey("Type" + N_Button.ToString()) || PlayerPrefs.GetString("Type" + N_Button.ToString()) == "") // perfil vazio
-        {
+        if (profile == null)
             mainMenuScript.OpenNameInsertScreen();
-        }
-        else if (!PlayerPrefs.HasKey("Sex" + N_Button.ToString()) || PlayerPrefs.GetString("Sex" + N_Button.ToString()) == "") // ainda nao escolheu menina ou menino
+        else
         {
-            mainMenuScript.GoToSexSelection();
-        }
-        else // perfil completo
-        {
+            ProfileManager.Instance.LoadProfile(N_Button);
             mainMenuScript.GoToMainMenu();
-            bool isKame = PlayerPrefs.GetString("Type" + N_Button.ToString()) == "Kame";
-            bool isMale = PlayerPrefs.GetString("Sex" + N_Button.ToString()) == "Menino";
-            Debug.Log("SAVE? " + ((int)(isKame ? (isMale ? PROFILE_TYPES.KAME_MALE : PROFILE_TYPES.KAME_FEMALE) : (isMale ? PROFILE_TYPES.KAMHRU_MALE : PROFILE_TYPES.KANHRU_FEMALE))).ToString());
-            PlayerPrefs.SetInt("profile_active", (int)(isKame ? (isMale ? PROFILE_TYPES.KAME_MALE : PROFILE_TYPES.KAME_FEMALE) : (isMale ? PROFILE_TYPES.KAMHRU_MALE : PROFILE_TYPES.KANHRU_FEMALE)));
         }
     }
 

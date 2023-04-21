@@ -37,6 +37,13 @@ public class MainMenuScript : MonoBehaviour
 
     public static bool hasAlreadyLogedIn = false;
 
+    public static MainMenuScript Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         foreach (GameObject g in enableAtStart)
@@ -92,7 +99,7 @@ public class MainMenuScript : MonoBehaviour
     public void OnNameInputField(string name)
     {
         playerName = name;
-        if(playerName.Length > 0) 
+        if (playerName.Length > 0)
         {
             alertIcon.SetActive(false);
             charBlinking.SetActive(false);
@@ -103,11 +110,10 @@ public class MainMenuScript : MonoBehaviour
 
     public void CheckName() // Chamado ao clicar em continuar na tela de inserir o nome
     {
-        if(playerName.Length > 0)
+        if (playerName.Length > 0)
         {
-            PlayerPrefs.SetString("Name" + selectedSlot, playerName); // armazena o nome do jogador
             insertNameToChooseTransition.SetActive(true);
-        } 
+        }
         else
         {
             alertIcon.SetActive(true);
@@ -129,7 +135,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void RefreshSlots()
     {
-        foreach(Slots_Button_Script slot in slots)
+        foreach (Slots_Button_Script slot in slots)
         {
             slot.Refresh();
         }

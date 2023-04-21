@@ -8,3 +8,11 @@ public enum PlayerType
     KANHRU_MALE,
     KANHRU_FEMALE
 }
+
+[Serializable]
+public enum Level
+{
+    LEVEL0,
+    LEVEL1,
+    LEVEL2
+}

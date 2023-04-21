@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Profiles;
 
 public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do player
 {
@@ -42,19 +41,18 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         {
             Spawn();
         }
-        Debug.Log("RER" + PlayerPrefs.GetInt("profile_active").ToString());
-        PROFILE_TYPES type = (PROFILE_TYPES)PlayerPrefs.GetInt("profile_active");
-        switch (type)
+        Debug.Log(ProfileManager.Instance.GetActiveProfile().playerType);
+        switch (ProfileManager.Instance.GetActiveProfile().playerType)
         {
-            case PROFILE_TYPES.KAME_FEMALE:
+            case PlayerType.KAME_FEMALE:
                 KAME_FEMALE.SetActive(true);
                 break;
 
-            case PROFILE_TYPES.KAME_MALE:
+            case PlayerType.KAME_MALE:
                 KAME_MALE.SetActive(true);
                 break;
 
-            case PROFILE_TYPES.KANHRU_FEMALE:
+            case PlayerType.KANHRU_FEMALE:
                 KANHRU_FEMALE.SetActive(true);
                 break;
 

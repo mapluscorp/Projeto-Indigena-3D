@@ -11,18 +11,18 @@ public class ProfileManager : MonoBehaviour
     public List<Profile> profiles;
     public InputField profileNameInputField;
 
-    public Profile selectedProfile;
+    private int profileLoadIndex = -1;
     public static ProfileManager Instance;
 
     private void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
     {
         this.LoadProfiles();
-        selectedProfile = this.profiles[0];
     }
 
     private void LoadProfiles()
@@ -54,12 +54,42 @@ public class ProfileManager : MonoBehaviour
         return true;
     }
 
-    public void SelectPlayer(string playerTypeString)
+    public void CreatePlayer(string playerTypeString)
     {
         string playerName = profileNameInputField.text;
         profileNameInputField.text = "";
         PlayerType playerType = (PlayerType)Enum.Parse(typeof(PlayerType), playerTypeString);
-        this.CreateProfile(playerName, playerType);
+        if (this.CreateProfile(playerName, playerType))
+        {
+            this.LoadProfile(this.profiles.Count - 1);
+            MainMenuScript.Instance.GoToMainMenu();
+        }
+    }
+
+    public void LoadProfile(int index)
+    {
+        this.profileLoadIndex = index;
+    }
+
+    public Profile GetActiveProfile()
+    {
+        if (profileLoadIndex < 0)
+            return null;
+        return this.profiles[profileLoadIndex];
+    }
+
+    public void SetLevelCurrentProfile(Level level, Vector3 position)
+    {
+        this.profiles[profileLoadIndex].level = level;
+        this.profiles[profileLoadIndex].position = position;
+        this.SaveProfiles();
+    }
+
+    public void DeleteCurrentProfile()
+    {
+        this.profiles.RemoveAt(profileLoadIndex);
+        this.SaveProfiles();
+        MainMenuScript.Instance.RefreshSlots();
     }
 }
 

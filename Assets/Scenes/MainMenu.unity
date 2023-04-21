@@ -592,8 +592,9 @@ GameObject:
   m_Component:
   - component: {fileID: 35181758}
   - component: {fileID: 35181757}
+  - component: {fileID: 35181759}
   m_Layer: 0
-  m_Name: MainMenuScript
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,6 +653,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35181759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35181756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93335cfc0f67f3346ad4d5dc592c4ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profiles: []
+  profileNameInputField: {fileID: 786179390}
 --- !u!1 &61466977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6644157217193527083, guid: 2e3a78e9b9aac3546b2d39b593e63d3b,
@@ -848,7 +863,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 35181757}
+      objectReference: {fileID: 35181759}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -862,7 +877,12 @@ PrefabInstance:
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetCurrentSlot
+      value: LoadProfile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ProfileManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
@@ -1851,7 +1871,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 35181757}
+      objectReference: {fileID: 35181759}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -1865,7 +1885,12 @@ PrefabInstance:
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetCurrentSlot
+      value: LoadProfile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ProfileManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
@@ -4650,9 +4675,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 35181757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: CleanSlot
+      - m_Target: {fileID: 35181759}
+        m_TargetAssemblyTypeName: ProfileManager, Assembly-CSharp
+        m_MethodName: DeleteCurrentProfile
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9471,7 +9496,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 35181757}
+      objectReference: {fileID: 35181759}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -9480,7 +9505,12 @@ PrefabInstance:
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetCurrentSlot
+      value: LoadProfile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ProfileManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3994616998654327451, guid: 509f5557413a49c4c9851bf1e1a8ab90,
         type: 3}
@@ -9654,16 +9684,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35181757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnSelectBoyOrGirl
-        m_Mode: 3
+      - m_Target: {fileID: 35181759}
+        m_TargetAssemblyTypeName: ProfileManager, Assembly-CSharp
+        m_MethodName: CreatePlayer
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: KAME_MALE
           m_BoolArgument: 1
         m_CallState: 1
 --- !u!114 &4255214438535618184
@@ -9909,16 +9939,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35181757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnSelectBoyOrGirl
-        m_Mode: 3
+      - m_Target: {fileID: 35181759}
+        m_TargetAssemblyTypeName: ProfileManager, Assembly-CSharp
+        m_MethodName: CreatePlayer
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: KANHRU_MALE
           m_BoolArgument: 1
         m_CallState: 1
 --- !u!114 &4255214438734467942
@@ -10124,16 +10154,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35181757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnSelectBoyOrGirl
-        m_Mode: 3
+      - m_Target: {fileID: 35181759}
+        m_TargetAssemblyTypeName: ProfileManager, Assembly-CSharp
+        m_MethodName: CreatePlayer
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: KAME_FEMALE
           m_BoolArgument: 1
         m_CallState: 1
 --- !u!114 &4255214438857376131
@@ -10430,14 +10460,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 35181757}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnSelectBoyOrGirl
-        m_Mode: 3
+      - m_Target: {fileID: 35181759}
+        m_TargetAssemblyTypeName: ProfileManager, Assembly-CSharp
+        m_MethodName: CreatePlayer
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1

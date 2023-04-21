@@ -37,11 +37,16 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
         CanUseMachete = true;
         IsGravityOn = true;
         IsAlive = true;
+        KAME_MALE.SetActive(false);
         if (PlayerPrefs.HasKey("SpawnPosition"))
         {
             Spawn();
         }
-        Debug.Log(ProfileManager.Instance.GetActiveProfile().playerType);
+        if (!ProfileManager.Instance)
+        {
+            (new GameObject("ProfileManager")).AddComponent<ProfileManager>();
+            ProfileManager.Instance.LoadOrCreate("Clebinho", PlayerType.KANHRU_MALE);
+        }
         switch (ProfileManager.Instance.GetActiveProfile().playerType)
         {
             case PlayerType.KAME_FEMALE:

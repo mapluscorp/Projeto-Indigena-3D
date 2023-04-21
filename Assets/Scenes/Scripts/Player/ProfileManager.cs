@@ -18,10 +18,6 @@ public class ProfileManager : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    private void Start()
-    {
         this.LoadProfiles();
     }
 
@@ -30,7 +26,6 @@ public class ProfileManager : MonoBehaviour
         if (PlayerPrefs.HasKey("profiles"))
         {
             string profilesData = PlayerPrefs.GetString("profiles", "[]");
-            Debug.Log(profilesData);
             this.profiles = JsonHelper.FromJson<Profile>(profilesData);
         }
     }
@@ -66,6 +61,18 @@ public class ProfileManager : MonoBehaviour
         }
     }
 
+    public void LoadOrCreate(string playerName, PlayerType playerType)
+    {
+        if (this.profiles.Count > 0)
+        {
+            this.LoadProfile(0);
+        }
+        else if (this.CreateProfile(playerName, playerType))
+        {
+            this.LoadProfile(0);
+        }
+
+    }
     public void LoadProfile(int index)
     {
         this.profileLoadIndex = index;

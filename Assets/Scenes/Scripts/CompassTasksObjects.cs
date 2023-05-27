@@ -12,12 +12,12 @@ public class CompassTasksObjects : MonoBehaviour
 
     private void Update()
     {
-        tasks = tasks ?? GameObject.FindWithTag("Task Group");
+//        tasks = tasks ?? GameObject.FindWithTag("Task Group");
 
-        if (directionCoroutine == null && tasks != null)
-        {
-            directionCoroutine = StartCoroutine(ShowDirectionCoroutine(tasks));
-        }
+        //if (directionCoroutine == null && tasks != null)
+        //{
+       //     directionCoroutine = StartCoroutine(ShowDirectionCoroutine(tasks));
+       // }
     }
 
     /// <summary>

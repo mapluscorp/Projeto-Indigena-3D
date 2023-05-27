@@ -31,8 +31,8 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     public GameObject KAME_FEMALE, KAME_MALE, KANHRU_FEMALE, KAMHRU_MALE;
     void Start()
     {
-        controller = this.GetComponentInChildren<CharacterController>();
-        anim = this.GetComponentInChildren<Animator>();
+        controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
         CanInteract = true;
         CanUseMachete = true;
         IsGravityOn = true;

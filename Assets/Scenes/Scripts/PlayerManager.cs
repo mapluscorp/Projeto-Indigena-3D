@@ -79,6 +79,41 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
     {
         if (InputManager.Jump())
             Jump();
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            var position = new Vector3();
+
+            if (anim != null)
+            {
+                position = anim.transform.position;
+            }
+            else
+            {
+                var animAux = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+                if (animAux != null)
+                {
+
+                    position = animAux.transform.position;
+                }
+                else
+                {
+                    position = GameObject.FindGameObjectWithTag("Player").transform.position;
+                }
+            }
+
+            PlayerPrefsX.SetVector3("SpawnPosition", position);
+            //SavePlayerPosition();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            //var loadPosition = PlayerPrefsX.GetVector3("Alocura");
+            //this.transform.position = loadPosition;
+            //anim.transform.position = loadPosition;
+            //controller.Move(loadPosition);
+            Spawn();
+        }
+
     }
 
     private void Death()
@@ -93,26 +128,30 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     IEnumerator Respawn()
     {
+        controller.enabled = false;
         CanInteract = false;
         Vector3 pos = anim.transform.position; pos.y = -2f;
         Instantiate(waterRipple, pos, Quaternion.identity);
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        //this.transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds(2);
         anim.transform.position = CheckPointSystem.CurrentSpawnPosition;
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        //this.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         IsAlive = true;
         CanInteract = true;
+        controller.enabled = true;
     }
 
     private void Spawn()
     {
+        controller.enabled = false;
         CanInteract = false;
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        //this.transform.GetChild(0).gameObject.SetActive(false);
         anim.transform.position = CheckPointSystem.CurrentSpawnPosition;
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        //this.transform.GetChild(0).gameObject.SetActive(true);
         IsAlive = true;
         CanInteract = true;
+        controller.enabled = true;
     }
 
     private void Jump()
@@ -177,7 +216,27 @@ public class PlayerManager : MonoBehaviour // responsavel pela movimentacao do p
 
     public void SavePlayerPosition()
     {
-        PlayerPrefsX.SetVector3("SpawnPosition", anim.transform.position);
+        var position = new Vector3();
+
+        if (anim != null)
+        {
+            position = anim.transform.position;
+        }
+        else
+        {
+            var animAux = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+            if (animAux != null)
+            {
+
+                position = animAux.transform.position;
+            }
+            else
+            {
+                position = GameObject.FindGameObjectWithTag("Player").transform.position;
+            }
+        }
+
+        PlayerPrefsX.SetVector3("SpawnPosition", position);
     }
 
 }

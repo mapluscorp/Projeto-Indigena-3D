@@ -1,0 +1,670 @@
+{
+  "rootTopicKey": "9650806c-3891-46e9-aebc-1538789e9f68",
+  "editorRootTopicKey": "9650806c-3891-46e9-aebc-1538789e9f68",
+  "focusKey": "11d56a62-97f3-40f7-8e70-43b450946bdf",
+  "extData": {
+    "TOPIC_REFERENCE": {
+      "reference": {}
+    }
+  },
+  "topics": [
+    {
+      "key": "309fa719-731f-4f51-a359-d5ba87f09d6c",
+      "parentKey": "80ca2c39-50f3-4168-ada9-ed1c0c102f1c",
+      "subKeys": [
+        "9dfab6d1-af59-40c4-bba3-f86265b70f54"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "s﻿uccess"
+        }
+      ]
+    },
+    {
+      "key": "34866218-af14-4976-86fe-7d2cdce96a25",
+      "parentKey": "b385813f-8910-446f-8f9b-53ff5fbdf566",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿ave missions is completed"
+        }
+      ]
+    },
+    {
+      "key": "2650e7cf-27f7-4cea-a804-4bc64b963505",
+      "parentKey": "78a4e423-273e-49ec-93a9-8c9ca6adeef1",
+      "subKeys": [
+        "6c762a82-d62b-4c42-b45a-06dc8684304e",
+        "918d107a-e3df-4bb1-92d7-5c1d0d121b50",
+        "28f7276d-699d-46c4-9359-477271eed679"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "fb62f4d8-4d03-4c5b-82ac-1d657a342af4",
+      "parentKey": "3103e67c-869b-47c9-9d39-3a2218a0b0ba",
+      "subKeys": [
+        "04d046c1-1d74-4df1-b19e-3525e3c58a07",
+        "c2e5920d-022f-4ecd-bc32-a5aef4d25ad9"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿elecLanguage"
+        },
+        {
+          "type": "DESC",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "key": "276d04be-73fa-4da5-8e28-62b00822dbff",
+      "parentKey": "28f7276d-699d-46c4-9359-477271eed679",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "f﻿ailed"
+        }
+      ]
+    },
+    {
+      "key": "04d046c1-1d74-4df1-b19e-3525e3c58a07",
+      "parentKey": "fb62f4d8-4d03-4c5b-82ac-1d657a342af4",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "failed"
+        }
+      ]
+    },
+    {
+      "key": "c45bd356-596b-4b17-bedd-f20318876689",
+      "parentKey": "5f8a8c40-5879-4339-bfa9-01e593b5c9b5",
+      "subKeys": [
+        "a29b4227-5403-49fc-ad59-8d4244d30546"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿nit First Mini game"
+        }
+      ]
+    },
+    {
+      "key": "eddecc86-38f8-4116-a6c8-e537f5c9c683",
+      "parentKey": "a29b4227-5403-49fc-ad59-8d4244d30546",
+      "subKeys": [
+        "b385813f-8910-446f-8f9b-53ff5fbdf566"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿ompleted mini-game"
+        }
+      ]
+    },
+    {
+      "key": "94359c98-5a70-43e5-833b-9b9037d2acd0",
+      "parentKey": "e325d86f-8ba7-4728-96de-c017dff13145",
+      "subKeys": [
+        "344be4bd-9f30-42bb-967b-17627bb5dce5"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿irst Mission"
+        },
+        {
+          "type": "DESC",
+          "data": "* Colher duas erva\\-moura \n\n"
+        }
+      ]
+    },
+    {
+      "key": "2f4d562b-e0ab-4b65-bdd1-6323130d0b83",
+      "parentKey": "39499a43-27f0-4adb-829e-ebfcc12cb641",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿nit Minigames"
+        }
+      ]
+    },
+    {
+      "key": "42c4507e-7e81-4a65-ab1f-be959791832c",
+      "parentKey": "a3471083-b8ea-4607-ae47-3e337a7266d7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿ave missions is completed"
+        }
+      ]
+    },
+    {
+      "key": "11d56a62-97f3-40f7-8e70-43b450946bdf",
+      "parentKey": "e325d86f-8ba7-4728-96de-c017dff13145",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿econd Mission"
+        }
+      ]
+    },
+    {
+      "key": "a3471083-b8ea-4607-ae47-3e337a7266d7",
+      "parentKey": "3ef8b943-b057-4a5d-b3cb-2f4b469e364d",
+      "subKeys": [
+        "42c4507e-7e81-4a65-ab1f-be959791832c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "89bde5ef-adbd-4555-9274-0980813c3922",
+      "parentKey": "f6e30933-ef64-4acc-bec1-1d72c367d822",
+      "subKeys": [
+        "39499a43-27f0-4adb-829e-ebfcc12cb641"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "M﻿ain Menu "
+        }
+      ]
+    },
+    {
+      "key": "074bb464-f77f-41e2-a0f5-f43b390496b7",
+      "parentKey": "9dfab6d1-af59-40c4-bba3-f86265b70f54",
+      "subKeys": [
+        "8aec4625-9bc3-4315-880f-4314b0394766"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "5f8a8c40-5879-4339-bfa9-01e593b5c9b5",
+      "parentKey": "a823d773-e6b6-4556-92f2-41edaed1219a",
+      "subKeys": [
+        "c45bd356-596b-4b17-bedd-f20318876689"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "6c762a82-d62b-4c42-b45a-06dc8684304e",
+      "parentKey": "2650e7cf-27f7-4cea-a804-4bc64b963505",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿reate new profile"
+        }
+      ]
+    },
+    {
+      "key": "3103e67c-869b-47c9-9d39-3a2218a0b0ba",
+      "parentKey": "fc1d459a-63ff-4c7a-b20a-88dc2e00a1de",
+      "subKeys": [
+        "fb62f4d8-4d03-4c5b-82ac-1d657a342af4"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "918d107a-e3df-4bb1-92d7-5c1d0d121b50",
+      "parentKey": "2650e7cf-27f7-4cea-a804-4bc64b963505",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "D﻿elete existing profile"
+        }
+      ]
+    },
+    {
+      "key": "9dfab6d1-af59-40c4-bba3-f86265b70f54",
+      "parentKey": "309fa719-731f-4f51-a359-d5ba87f09d6c",
+      "subKeys": [
+        "074bb464-f77f-41e2-a0f5-f43b390496b7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "O﻿pen game"
+        },
+        {
+          "type": "DESC",
+          "data": "A﻿brir o jogo com as configurações de acordo com o perfil carregado."
+        }
+      ]
+    },
+    {
+      "key": "80ca2c39-50f3-4168-ada9-ed1c0c102f1c",
+      "parentKey": "39499a43-27f0-4adb-829e-ebfcc12cb641",
+      "subKeys": [
+        "fd1744eb-3f26-45da-b36a-8392d676438b",
+        "309fa719-731f-4f51-a359-d5ba87f09d6c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿nit game"
+        }
+      ]
+    },
+    {
+      "key": "39499a43-27f0-4adb-829e-ebfcc12cb641",
+      "parentKey": "89bde5ef-adbd-4555-9274-0980813c3922",
+      "subKeys": [
+        "80ca2c39-50f3-4168-ada9-ed1c0c102f1c",
+        "2f4d562b-e0ab-4b65-bdd1-6323130d0b83",
+        "05e7cd51-69e7-4fef-8583-a62f74f2dc19",
+        "e669e24c-c8ac-45f6-a5ea-32d4dd20084c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        },
+        {
+          "type": "DESC",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "key": "a664e139-ea3b-487d-bd53-b787d6e5135d",
+      "parentKey": "9650806c-3891-46e9-aebc-1538789e9f68",
+      "subKeys": [
+        "fc1d459a-63ff-4c7a-b20a-88dc2e00a1de"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Scenes"
+        }
+      ]
+    },
+    {
+      "key": "a823d773-e6b6-4556-92f2-41edaed1219a",
+      "parentKey": "344be4bd-9f30-42bb-967b-17627bb5dce5",
+      "subKeys": [
+        "5f8a8c40-5879-4339-bfa9-01e593b5c9b5"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿ompleted Mission"
+        }
+      ]
+    },
+    {
+      "key": "b385813f-8910-446f-8f9b-53ff5fbdf566",
+      "parentKey": "eddecc86-38f8-4116-a6c8-e537f5c9c683",
+      "subKeys": [
+        "34866218-af14-4976-86fe-7d2cdce96a25"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "05e7cd51-69e7-4fef-8583-a62f74f2dc19",
+      "parentKey": "39499a43-27f0-4adb-829e-ebfcc12cb641",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "E﻿xit the game"
+        }
+      ]
+    },
+    {
+      "key": "a29b4227-5403-49fc-ad59-8d4244d30546",
+      "parentKey": "c45bd356-596b-4b17-bedd-f20318876689",
+      "subKeys": [
+        "eddecc86-38f8-4116-a6c8-e537f5c9c683",
+        "3ef8b943-b057-4a5d-b3cb-2f4b469e364d"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "9650806c-3891-46e9-aebc-1538789e9f68",
+      "parentKey": null,
+      "subKeys": [
+        "a664e139-ea3b-487d-bd53-b787d6e5135d"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Inicio"
+        }
+      ]
+    },
+    {
+      "key": "78a4e423-273e-49ec-93a9-8c9ca6adeef1",
+      "parentKey": "c2e5920d-022f-4ecd-bc32-a5aef4d25ad9",
+      "subKeys": [
+        "2650e7cf-27f7-4cea-a804-4bc64b963505"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿elect Profile"
+        }
+      ]
+    },
+    {
+      "key": "fc1d459a-63ff-4c7a-b20a-88dc2e00a1de",
+      "parentKey": "a664e139-ea3b-487d-bd53-b787d6e5135d",
+      "subKeys": [
+        "3103e67c-869b-47c9-9d39-3a2218a0b0ba"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "MainMenu"
+        }
+      ]
+    },
+    {
+      "key": "f6e30933-ef64-4acc-bec1-1d72c367d822",
+      "parentKey": "28f7276d-699d-46c4-9359-477271eed679",
+      "subKeys": [
+        "89bde5ef-adbd-4555-9274-0980813c3922"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "s﻿uccess"
+        }
+      ]
+    },
+    {
+      "key": "8aec4625-9bc3-4315-880f-4314b0394766",
+      "parentKey": "074bb464-f77f-41e2-a0f5-f43b390496b7",
+      "subKeys": [
+        "e325d86f-8ba7-4728-96de-c017dff13145"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿irst Open"
+        },
+        {
+          "type": "DESC",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "key": "3ef8b943-b057-4a5d-b3cb-2f4b469e364d",
+      "parentKey": "a29b4227-5403-49fc-ad59-8d4244d30546",
+      "subKeys": [
+        "a3471083-b8ea-4607-ae47-3e337a7266d7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "r﻿eturn to the game"
+        }
+      ]
+    },
+    {
+      "key": "fd1744eb-3f26-45da-b36a-8392d676438b",
+      "parentKey": "80ca2c39-50f3-4168-ada9-ed1c0c102f1c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "f﻿ailed"
+        }
+      ]
+    },
+    {
+      "key": "344be4bd-9f30-42bb-967b-17627bb5dce5",
+      "parentKey": "94359c98-5a70-43e5-833b-9b9037d2acd0",
+      "subKeys": [
+        "a823d773-e6b6-4556-92f2-41edaed1219a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿ctions"
+        }
+      ]
+    },
+    {
+      "key": "28f7276d-699d-46c4-9359-477271eed679",
+      "parentKey": "2650e7cf-27f7-4cea-a804-4bc64b963505",
+      "subKeys": [
+        "276d04be-73fa-4da5-8e28-62b00822dbff",
+        "f6e30933-ef64-4acc-bec1-1d72c367d822"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "L﻿oad game of existing profile"
+        }
+      ]
+    },
+    {
+      "key": "c2e5920d-022f-4ecd-bc32-a5aef4d25ad9",
+      "parentKey": "fb62f4d8-4d03-4c5b-82ac-1d657a342af4",
+      "subKeys": [
+        "78a4e423-273e-49ec-93a9-8c9ca6adeef1"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "success"
+        },
+        {
+          "type": "DESC",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "key": "e669e24c-c8ac-45f6-a5ea-32d4dd20084c",
+      "parentKey": "39499a43-27f0-4adb-829e-ebfcc12cb641",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "R﻿eturn select profile"
+        }
+      ]
+    },
+    {
+      "key": "e325d86f-8ba7-4728-96de-c017dff13145",
+      "parentKey": "8aec4625-9bc3-4315-880f-4314b0394766",
+      "subKeys": [
+        "94359c98-5a70-43e5-833b-9b9037d2acd0",
+        "11d56a62-97f3-40f7-8e70-43b450946bdf"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "M﻿issions"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "readOnly": false,
+    "allowUndo": true,
+    "layoutDir": 0,
+    "theme": {
+      "name": "default",
+      "randomColor": true,
+      "background": "rgb(57,60,65)",
+      "highlightColor": "#50C9CE",
+      "marginH": 60,
+      "marginV": 20,
+      "contentStyle": {
+        "lineHeight": "1.5"
+      },
+      "linkStyle": {
+        "lineRadius": 5,
+        "lineType": "curve",
+        "lineWidth": "3px"
+      },
+      "rootTopic": {
+        "contentStyle": {
+          "fontSize": "34px",
+          "borderRadius": "35px",
+          "padding": "16px 18px 16px 18px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px",
+          "lineColor": "rgb(113, 203, 45)"
+        }
+      },
+      "primaryTopic": {
+        "contentStyle": {
+          "borderWidth": "1px",
+          "borderStyle": "solid",
+          "borderRadius": "20px",
+          "fontSize": "17px",
+          "padding": "10px 15px 10px 15px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px",
+          "lineColor": "rgb(113, 203, 45)"
+        }
+      },
+      "normalTopic": {
+        "contentStyle": {
+          "border": "1px solid #e8eaec",
+          "borderRadius": "20px",
+          "fontSize": "17px",
+          "padding": "4px 10px"
+        },
+        "subLinkStyle": {
+          "lineType": "curve",
+          "lineWidth": "3px",
+          "lineColor": "white"
+        }
+      }
+    }
+  },
+  "formatVersion": "0.0"
+}
